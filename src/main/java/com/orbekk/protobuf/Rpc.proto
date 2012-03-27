@@ -1,0 +1,15 @@
+package com.orbekk.protobuf;
+
+// Next tag: 4
+message Request {
+    optional string full_service_name = 1;
+    optional string method_name = 2;
+    optional bytes request_proto = 3;
+}
+
+// Next tag: 4
+message Response {
+    optional bytes response_proto = 1;
+    optional int32 error = 2 [default = 0];
+    optional string error_message = 3;
+}
