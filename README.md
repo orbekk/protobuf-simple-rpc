@@ -7,8 +7,8 @@ for how to implement a simple service.
 
 ## Background and target applications
 
-During my master's project I needed fast RPCs for Android phones. In the
-beginning I used [jsonrpc4j](http://code.google.com/p/jsonrpc4j/) and
+During another project I needed fast RPCs for Android phones. In the beginning
+I used [jsonrpc4j](http://code.google.com/p/jsonrpc4j/) and
 [Jetty](http://jetty.codehaus.org/jetty/) which are a wonderful pieces of
 software, but unfortunately can be really slow.
 
