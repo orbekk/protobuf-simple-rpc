@@ -53,6 +53,7 @@ public class SimpleProtobufServer extends Thread {
             throws IOException {
         Service service = registeredServices.get(request.getFullServiceName());
         final Rpc.Response.Builder response = Rpc.Response.newBuilder();
+        response.setRequestId(request.getRequestId());
         if (service == null) {
             response.setError(Rpc.Response.Error.UNKNOWN_SERVICE);
             response.build().writeDelimitedTo(out);
@@ -75,6 +76,7 @@ public class SimpleProtobufServer extends Thread {
                 .mergeFrom(request.getRequestProto())
                 .build();
         service.callMethod(method, null,  requestMessage, doneCallback);
+        response.build().writeDelimitedTo(out);
     }
 
     private void handleConnection(final Socket connection) {
@@ -84,6 +86,13 @@ public class SimpleProtobufServer extends Thread {
                     while (true) {
                         Rpc.Request r1 = Rpc.Request.parseDelimitedFrom(
                             connection.getInputStream());
+                        if (r1 == null) {
+                            try {
+                                connection.close();
+                            } catch (IOException e) {
+                                // Connection is closed.
+                            }
+                        }
                         handleRequest(r1, connection.getOutputStream());
                     }
                 } catch (IOException e) {

@@ -1,13 +1,14 @@
 package com.orbekk.protobuf;
 
-// Next tag: 4
+// Next tag: 6
 message Request {
     optional string full_service_name = 1;
     optional string method_name = 2;
     optional bytes request_proto = 3;
+    optional int64 request_id = 4;
 }
 
-// Next tag: 4
+// Next tag: 6
 message Response {
     optional bytes response_proto = 1;
     enum Error {
@@ -19,4 +20,5 @@ message Response {
     optional Error error = 2;
     optional int32 app_error = 4;
     optional string error_message = 3;
+    optional int64 request_id = 5;
 }

@@ -22,6 +22,10 @@ public final class Rpc {
     // optional bytes request_proto = 3;
     boolean hasRequestProto();
     com.google.protobuf.ByteString getRequestProto();
+    
+    // optional int64 request_id = 4;
+    boolean hasRequestId();
+    long getRequestId();
   }
   public static final class Request extends
       com.google.protobuf.GeneratedMessage
@@ -54,12 +58,12 @@ public final class Rpc {
     private int bitField0_;
     // optional string full_service_name = 1;
     public static final int FULL_SERVICE_NAME_FIELD_NUMBER = 1;
-    private Object fullServiceName_;
+    private java.lang.Object fullServiceName_;
     public boolean hasFullServiceName() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     public String getFullServiceName() {
-      Object ref = fullServiceName_;
+      java.lang.Object ref = fullServiceName_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -73,7 +77,7 @@ public final class Rpc {
       }
     }
     private com.google.protobuf.ByteString getFullServiceNameBytes() {
-      Object ref = fullServiceName_;
+      java.lang.Object ref = fullServiceName_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
@@ -86,12 +90,12 @@ public final class Rpc {
     
     // optional string method_name = 2;
     public static final int METHOD_NAME_FIELD_NUMBER = 2;
-    private Object methodName_;
+    private java.lang.Object methodName_;
     public boolean hasMethodName() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public String getMethodName() {
-      Object ref = methodName_;
+      java.lang.Object ref = methodName_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -105,7 +109,7 @@ public final class Rpc {
       }
     }
     private com.google.protobuf.ByteString getMethodNameBytes() {
-      Object ref = methodName_;
+      java.lang.Object ref = methodName_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
@@ -126,10 +130,21 @@ public final class Rpc {
       return requestProto_;
     }
     
+    // optional int64 request_id = 4;
+    public static final int REQUEST_ID_FIELD_NUMBER = 4;
+    private long requestId_;
+    public boolean hasRequestId() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public long getRequestId() {
+      return requestId_;
+    }
+    
     private void initFields() {
       fullServiceName_ = "";
       methodName_ = "";
       requestProto_ = com.google.protobuf.ByteString.EMPTY;
+      requestId_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -152,6 +167,9 @@ public final class Rpc {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, requestProto_);
       }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt64(4, requestId_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -173,13 +191,19 @@ public final class Rpc {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, requestProto_);
       }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, requestId_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
     
+    private static final long serialVersionUID = 0L;
     @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
     
@@ -301,6 +325,8 @@ public final class Rpc {
         bitField0_ = (bitField0_ & ~0x00000002);
         requestProto_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
+        requestId_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -351,6 +377,10 @@ public final class Rpc {
           to_bitField0_ |= 0x00000004;
         }
         result.requestProto_ = requestProto_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.requestId_ = requestId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -375,6 +405,9 @@ public final class Rpc {
         }
         if (other.hasRequestProto()) {
           setRequestProto(other.getRequestProto());
+        }
+        if (other.hasRequestId()) {
+          setRequestId(other.getRequestId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -422,6 +455,11 @@ public final class Rpc {
               requestProto_ = input.readBytes();
               break;
             }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              requestId_ = input.readInt64();
+              break;
+            }
           }
         }
       }
@@ -429,12 +467,12 @@ public final class Rpc {
       private int bitField0_;
       
       // optional string full_service_name = 1;
-      private Object fullServiceName_ = "";
+      private java.lang.Object fullServiceName_ = "";
       public boolean hasFullServiceName() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       public String getFullServiceName() {
-        Object ref = fullServiceName_;
+        java.lang.Object ref = fullServiceName_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
           fullServiceName_ = s;
@@ -465,12 +503,12 @@ public final class Rpc {
       }
       
       // optional string method_name = 2;
-      private Object methodName_ = "";
+      private java.lang.Object methodName_ = "";
       public boolean hasMethodName() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public String getMethodName() {
-        Object ref = methodName_;
+        java.lang.Object ref = methodName_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
           methodName_ = s;
@@ -524,6 +562,27 @@ public final class Rpc {
         return this;
       }
       
+      // optional int64 request_id = 4;
+      private long requestId_ ;
+      public boolean hasRequestId() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public long getRequestId() {
+        return requestId_;
+      }
+      public Builder setRequestId(long value) {
+        bitField0_ |= 0x00000008;
+        requestId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearRequestId() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        requestId_ = 0L;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:com.orbekk.protobuf.Request)
     }
     
@@ -553,6 +612,10 @@ public final class Rpc {
     // optional string error_message = 3;
     boolean hasErrorMessage();
     String getErrorMessage();
+    
+    // optional int64 request_id = 5;
+    boolean hasRequestId();
+    long getRequestId();
   }
   public static final class Response extends
       com.google.protobuf.GeneratedMessage
@@ -690,12 +753,12 @@ public final class Rpc {
     
     // optional string error_message = 3;
     public static final int ERROR_MESSAGE_FIELD_NUMBER = 3;
-    private Object errorMessage_;
+    private java.lang.Object errorMessage_;
     public boolean hasErrorMessage() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public String getErrorMessage() {
-      Object ref = errorMessage_;
+      java.lang.Object ref = errorMessage_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -709,7 +772,7 @@ public final class Rpc {
       }
     }
     private com.google.protobuf.ByteString getErrorMessageBytes() {
-      Object ref = errorMessage_;
+      java.lang.Object ref = errorMessage_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
@@ -720,11 +783,22 @@ public final class Rpc {
       }
     }
     
+    // optional int64 request_id = 5;
+    public static final int REQUEST_ID_FIELD_NUMBER = 5;
+    private long requestId_;
+    public boolean hasRequestId() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public long getRequestId() {
+      return requestId_;
+    }
+    
     private void initFields() {
       responseProto_ = com.google.protobuf.ByteString.EMPTY;
       error_ = com.orbekk.protobuf.Rpc.Response.Error.UNKNOWN_SERVICE;
       appError_ = 0;
       errorMessage_ = "";
+      requestId_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -749,6 +823,9 @@ public final class Rpc {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeInt32(4, appError_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeInt64(5, requestId_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -775,13 +852,19 @@ public final class Rpc {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, appError_);
       }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, requestId_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
     
+    private static final long serialVersionUID = 0L;
     @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
     
@@ -905,6 +988,8 @@ public final class Rpc {
         bitField0_ = (bitField0_ & ~0x00000004);
         errorMessage_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
+        requestId_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       
@@ -959,6 +1044,10 @@ public final class Rpc {
           to_bitField0_ |= 0x00000008;
         }
         result.errorMessage_ = errorMessage_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.requestId_ = requestId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -986,6 +1075,9 @@ public final class Rpc {
         }
         if (other.hasErrorMessage()) {
           setErrorMessage(other.getErrorMessage());
+        }
+        if (other.hasRequestId()) {
+          setRequestId(other.getRequestId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1042,6 +1134,11 @@ public final class Rpc {
             case 32: {
               bitField0_ |= 0x00000004;
               appError_ = input.readInt32();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              requestId_ = input.readInt64();
               break;
             }
           }
@@ -1120,12 +1217,12 @@ public final class Rpc {
       }
       
       // optional string error_message = 3;
-      private Object errorMessage_ = "";
+      private java.lang.Object errorMessage_ = "";
       public boolean hasErrorMessage() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public String getErrorMessage() {
-        Object ref = errorMessage_;
+        java.lang.Object ref = errorMessage_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
           errorMessage_ = s;
@@ -1153,6 +1250,27 @@ public final class Rpc {
         bitField0_ |= 0x00000008;
         errorMessage_ = value;
         onChanged();
+      }
+      
+      // optional int64 request_id = 5;
+      private long requestId_ ;
+      public boolean hasRequestId() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public long getRequestId() {
+        return requestId_;
+      }
+      public Builder setRequestId(long value) {
+        bitField0_ |= 0x00000010;
+        requestId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearRequestId() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        requestId_ = 0L;
+        onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:com.orbekk.protobuf.Response)
@@ -1186,12 +1304,13 @@ public final class Rpc {
   static {
     java.lang.String[] descriptorData = {
       "\n+src/main/java/com/orbekk/protobuf/Rpc." +
-      "proto\022\023com.orbekk.protobuf\"P\n\007Request\022\031\n" +
+      "proto\022\023com.orbekk.protobuf\"d\n\007Request\022\031\n" +
       "\021full_service_name\030\001 \001(\t\022\023\n\013method_name\030" +
-      "\002 \001(\t\022\025\n\rrequest_proto\030\003 \001(\014\"\317\001\n\010Respons" +
-      "e\022\026\n\016response_proto\030\001 \001(\014\0222\n\005error\030\002 \001(\016" +
-      "2#.com.orbekk.protobuf.Response.Error\022\021\n" +
-      "\tapp_error\030\004 \001(\005\022\025\n\rerror_message\030\003 \001(\t\"" +
+      "\002 \001(\t\022\025\n\rrequest_proto\030\003 \001(\014\022\022\n\nrequest_" +
+      "id\030\004 \001(\003\"\343\001\n\010Response\022\026\n\016response_proto\030" +
+      "\001 \001(\014\0222\n\005error\030\002 \001(\0162#.com.orbekk.protob" +
+      "uf.Response.Error\022\021\n\tapp_error\030\004 \001(\005\022\025\n\r" +
+      "error_message\030\003 \001(\t\022\022\n\nrequest_id\030\005 \001(\003\"" +
       "M\n\005Error\022\023\n\017UNKNOWN_SERVICE\020\000\022\022\n\016UNKNOWN" +
       "_METHOD\020\001\022\014\n\010CANCELED\020\002\022\r\n\tAPP_ERROR\020\003"
     };
@@ -1205,7 +1324,7 @@ public final class Rpc {
           internal_static_com_orbekk_protobuf_Request_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_orbekk_protobuf_Request_descriptor,
-              new java.lang.String[] { "FullServiceName", "MethodName", "RequestProto", },
+              new java.lang.String[] { "FullServiceName", "MethodName", "RequestProto", "RequestId", },
               com.orbekk.protobuf.Rpc.Request.class,
               com.orbekk.protobuf.Rpc.Request.Builder.class);
           internal_static_com_orbekk_protobuf_Response_descriptor =
@@ -1213,7 +1332,7 @@ public final class Rpc {
           internal_static_com_orbekk_protobuf_Response_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_orbekk_protobuf_Response_descriptor,
-              new java.lang.String[] { "ResponseProto", "Error", "AppError", "ErrorMessage", },
+              new java.lang.String[] { "ResponseProto", "Error", "AppError", "ErrorMessage", "RequestId", },
               com.orbekk.protobuf.Rpc.Response.class,
               com.orbekk.protobuf.Rpc.Response.Builder.class);
           return null;

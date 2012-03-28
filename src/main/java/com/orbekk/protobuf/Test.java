@@ -46,12 +46,12 @@ public final class Test {
     private int bitField0_;
     // optional string id = 1;
     public static final int ID_FIELD_NUMBER = 1;
-    private Object id_;
+    private java.lang.Object id_;
     public boolean hasId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     public String getId() {
-      Object ref = id_;
+      java.lang.Object ref = id_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -65,7 +65,7 @@ public final class Test {
       }
     }
     private com.google.protobuf.ByteString getIdBytes() {
-      Object ref = id_;
+      java.lang.Object ref = id_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
@@ -112,8 +112,10 @@ public final class Test {
       return size;
     }
     
+    private static final long serialVersionUID = 0L;
     @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
     
@@ -335,12 +337,12 @@ public final class Test {
       private int bitField0_;
       
       // optional string id = 1;
-      private Object id_ = "";
+      private java.lang.Object id_ = "";
       public boolean hasId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       public String getId() {
-        Object ref = id_;
+        java.lang.Object ref = id_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
           id_ = s;
@@ -419,12 +421,12 @@ public final class Test {
     private int bitField0_;
     // optional string id = 1;
     public static final int ID_FIELD_NUMBER = 1;
-    private Object id_;
+    private java.lang.Object id_;
     public boolean hasId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     public String getId() {
-      Object ref = id_;
+      java.lang.Object ref = id_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -438,7 +440,7 @@ public final class Test {
       }
     }
     private com.google.protobuf.ByteString getIdBytes() {
-      Object ref = id_;
+      java.lang.Object ref = id_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
@@ -485,8 +487,10 @@ public final class Test {
       return size;
     }
     
+    private static final long serialVersionUID = 0L;
     @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
     
@@ -708,12 +712,12 @@ public final class Test {
       private int bitField0_;
       
       // optional string id = 1;
-      private Object id_ = "";
+      private java.lang.Object id_ = "";
       public boolean hasId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       public String getId() {
-        Object ref = id_;
+        java.lang.Object ref = id_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
           id_ = s;
