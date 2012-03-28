@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.PriorityQueue;
 import java.io.Closeable;
+import java.io.IOException;
 
 public class TimeoutManager extends Thread {
     private static final Logger logger =
@@ -11,7 +12,7 @@ public class TimeoutManager extends Thread {
     private Environment environment;
     private PriorityQueue<Entry> entries = new PriorityQueue<Entry>();
 
-    private static class Entry implements Comparable<? extends Entry> {
+    private static class Entry implements Comparable<Entry> {
         // May not be null.
         public Long timeout;
         public Closeable closeable;
@@ -21,6 +22,10 @@ public class TimeoutManager extends Thread {
             this.closeable = closeable;
         }
 
+        public void close() throws IOException {
+            closeable.close();
+        }
+        
         @Override public int compareTo(Entry other) {
             return timeout.compareTo(other.timeout);
         }
@@ -31,9 +36,9 @@ public class TimeoutManager extends Thread {
         void sleep(long millis) throws InterruptedException;
     }
 
-    public static class DefaultEnvironment {
+    public static class DefaultEnvironment implements Environment {
         @Override public long currentTimeMillis() {
-            System.currentTimeMillis();
+            return System.currentTimeMillis();
         }
         @Override public void sleep(long millis) throws InterruptedException {
             Thread.sleep(millis);
@@ -45,29 +50,35 @@ public class TimeoutManager extends Thread {
     }
 
     public TimeoutManager() {
-        self(new DefaultTime());
+        this(new DefaultEnvironment());
     }
 
+    public synchronized void performWork() {
+        try {
+            if (entries.isEmpty()) {
+                wait();
+            } else {
+                long sleepTime = entries.peek().timeout -
+                        environment.currentTimeMillis();
+                if (sleepTime > 0) {
+                    wait(sleepTime);
+                }
+            }
+            closeExpiredEntries();
+        } catch (InterruptedException e) {
+            // Handled by outer loop.
+        }
+    }
+    
     @Override public void run() {
         while (!Thread.interrupted()) {
-            synchronized (this) {
-                if (entries.isEmpty()) {
-                    environment.wait();
-                } else {
-                    long sleepTime = entries.peek().timeout -
-                            environment.currentTimeMillis();
-                    if (sleepTime > 0) {
-                        environment.sleep(sleepTime);
-                    }
-                }
-                closeExpiredEntries();
-            }
+            performWork();
         }
     }
 
     public synchronized void closeExpiredEntries() {
         long currentTime = environment.currentTimeMillis();
-        while (entries.peek().timeout <= currentTime) {
+        while (!entries.isEmpty() && entries.peek().timeout <= currentTime) {
             try {
                 entries.poll().close();
             } catch (IOException e) {
