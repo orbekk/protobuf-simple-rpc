@@ -1,0 +1,14 @@
+package com.orbekk.example;
+
+option java_generic_services = true;
+
+message Empty {
+}
+
+message FortuneReply {
+    required string fortune = 1;
+}
+
+service FortuneService {
+    rpc GetFortune (Empty) returns (FortuneReply);
+}
