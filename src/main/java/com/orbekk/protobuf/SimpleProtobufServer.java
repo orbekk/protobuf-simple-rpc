@@ -39,6 +39,10 @@ public class SimpleProtobufServer extends Thread {
     public SimpleProtobufServer(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
+    
+    public int getPort() {
+        return serverSocket.getLocalPort();
+    }
 
     public synchronized void registerService(Service service) {
         String serviceName = service.getDescriptorForType().getFullName();
@@ -120,24 +124,24 @@ public class SimpleProtobufServer extends Thread {
         }
     }
 
-    public static void main(String[] args) {
-        SimpleProtobufServer server = SimpleProtobufServer.create(10000);
-        Test.TestService testService = new Test.TestService() {
-            @Override public void run(RpcController controller,
-                    Test.TestRequest request,
-                    RpcCallback<Test.TestResponse> done) {
-                System.out.println("Hello from TestService!");
-                done.run(Test.TestResponse.newBuilder()
-                        .setId("Hello from server.")
-                        .build());
-            }
-        };
-        server.registerService(testService);
-        server.start();
-        try {
-            server.join();
-        } catch (InterruptedException e) {
-            System.out.println("Stopped.");
-        }
-    }
+//    public static void main(String[] args) {
+//        SimpleProtobufServer server = SimpleProtobufServer.create(10000);
+//        Test.TestService testService = new Test.TestService() {
+//            @Override public void run(RpcController controller,
+//                    Test.TestRequest request,
+//                    RpcCallback<Test.TestResponse> done) {
+//                System.out.println("Hello from TestService!");
+//                done.run(Test.TestResponse.newBuilder()
+//                        .setId("Hello from server.")
+//                        .build());
+//            }
+//        };
+//        server.registerService(testService);
+//        server.start();
+//        try {
+//            server.join();
+//        } catch (InterruptedException e) {
+//            System.out.println("Stopped.");
+//        }
+//    }
 }

@@ -1,0 +1,20 @@
+package com.orbekk.protobuf;
+
+option java_generic_services = true;
+
+message Type1 {
+    optional int32 a = 1;
+    optional int32 b = 2;
+    optional string message = 3;
+}
+
+message Type2 {
+    optional int32 result = 1;
+    optional string message = 2;
+}
+
+service Service {
+    rpc TestA (Type1) returns (Type2);
+    rpc TestB (Type1) returns (Type2);
+    rpc TestC (Type1) returns (Type2);
+}
