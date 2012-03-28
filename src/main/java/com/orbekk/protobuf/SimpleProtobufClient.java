@@ -9,7 +9,8 @@ public class SimpleProtobufClient {
         try {
             Socket socket = new Socket("localhost", 10000);
             Rpc.Request r1 = Rpc.Request.newBuilder()
-                .setFullServiceName("Service1")
+                .setFullServiceName("com.orbekk.protobuf.TestService")
+                .setMethodName("Run")
                 .build();
             Rpc.Request r2 = Rpc.Request.newBuilder()
                 .setFullServiceName("Service2")

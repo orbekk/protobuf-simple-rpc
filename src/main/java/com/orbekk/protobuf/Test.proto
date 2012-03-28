@@ -1,0 +1,15 @@
+package com.orbekk.protobuf;
+
+option java_generic_services = true;
+
+message TestRequest {
+    optional string id = 1;
+}
+
+message TestResponse {
+    optional string id = 1;
+}
+
+service TestService {
+    rpc Run (TestRequest) returns (TestResponse);
+}

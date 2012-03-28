@@ -542,9 +542,13 @@ public final class Rpc {
     boolean hasResponseProto();
     com.google.protobuf.ByteString getResponseProto();
     
-    // optional int32 error = 2 [default = 0];
+    // optional .com.orbekk.protobuf.Response.Error error = 2;
     boolean hasError();
-    int getError();
+    com.orbekk.protobuf.Rpc.Response.Error getError();
+    
+    // optional int32 app_error = 4;
+    boolean hasAppError();
+    int getAppError();
     
     // optional string error_message = 3;
     boolean hasErrorMessage();
@@ -578,6 +582,81 @@ public final class Rpc {
       return com.orbekk.protobuf.Rpc.internal_static_com_orbekk_protobuf_Response_fieldAccessorTable;
     }
     
+    public enum Error
+        implements com.google.protobuf.ProtocolMessageEnum {
+      UNKNOWN_SERVICE(0, 0),
+      UNKNOWN_METHOD(1, 1),
+      CANCELED(2, 2),
+      APP_ERROR(3, 3),
+      ;
+      
+      public static final int UNKNOWN_SERVICE_VALUE = 0;
+      public static final int UNKNOWN_METHOD_VALUE = 1;
+      public static final int CANCELED_VALUE = 2;
+      public static final int APP_ERROR_VALUE = 3;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static Error valueOf(int value) {
+        switch (value) {
+          case 0: return UNKNOWN_SERVICE;
+          case 1: return UNKNOWN_METHOD;
+          case 2: return CANCELED;
+          case 3: return APP_ERROR;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<Error>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<Error>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Error>() {
+              public Error findValueByNumber(int number) {
+                return Error.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.orbekk.protobuf.Rpc.Response.getDescriptor().getEnumTypes().get(0);
+      }
+      
+      private static final Error[] VALUES = {
+        UNKNOWN_SERVICE, UNKNOWN_METHOD, CANCELED, APP_ERROR, 
+      };
+      
+      public static Error valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private Error(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:com.orbekk.protobuf.Response.Error)
+    }
+    
     private int bitField0_;
     // optional bytes response_proto = 1;
     public static final int RESPONSE_PROTO_FIELD_NUMBER = 1;
@@ -589,21 +668,31 @@ public final class Rpc {
       return responseProto_;
     }
     
-    // optional int32 error = 2 [default = 0];
+    // optional .com.orbekk.protobuf.Response.Error error = 2;
     public static final int ERROR_FIELD_NUMBER = 2;
-    private int error_;
+    private com.orbekk.protobuf.Rpc.Response.Error error_;
     public boolean hasError() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getError() {
+    public com.orbekk.protobuf.Rpc.Response.Error getError() {
       return error_;
+    }
+    
+    // optional int32 app_error = 4;
+    public static final int APP_ERROR_FIELD_NUMBER = 4;
+    private int appError_;
+    public boolean hasAppError() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public int getAppError() {
+      return appError_;
     }
     
     // optional string error_message = 3;
     public static final int ERROR_MESSAGE_FIELD_NUMBER = 3;
     private Object errorMessage_;
     public boolean hasErrorMessage() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public String getErrorMessage() {
       Object ref = errorMessage_;
@@ -633,7 +722,8 @@ public final class Rpc {
     
     private void initFields() {
       responseProto_ = com.google.protobuf.ByteString.EMPTY;
-      error_ = 0;
+      error_ = com.orbekk.protobuf.Rpc.Response.Error.UNKNOWN_SERVICE;
+      appError_ = 0;
       errorMessage_ = "";
     }
     private byte memoizedIsInitialized = -1;
@@ -652,10 +742,13 @@ public final class Rpc {
         output.writeBytes(1, responseProto_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, error_);
+        output.writeEnum(2, error_.getNumber());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(3, getErrorMessageBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getErrorMessageBytes());
+        output.writeInt32(4, appError_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -672,11 +765,15 @@ public final class Rpc {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, error_);
+          .computeEnumSize(2, error_.getNumber());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getErrorMessageBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getErrorMessageBytes());
+          .computeInt32Size(4, appError_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -802,10 +899,12 @@ public final class Rpc {
         super.clear();
         responseProto_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000001);
-        error_ = 0;
+        error_ = com.orbekk.protobuf.Rpc.Response.Error.UNKNOWN_SERVICE;
         bitField0_ = (bitField0_ & ~0x00000002);
-        errorMessage_ = "";
+        appError_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
+        errorMessage_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -855,6 +954,10 @@ public final class Rpc {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
+        result.appError_ = appError_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
         result.errorMessage_ = errorMessage_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -877,6 +980,9 @@ public final class Rpc {
         }
         if (other.hasError()) {
           setError(other.getError());
+        }
+        if (other.hasAppError()) {
+          setAppError(other.getAppError());
         }
         if (other.hasErrorMessage()) {
           setErrorMessage(other.getErrorMessage());
@@ -918,13 +1024,24 @@ public final class Rpc {
               break;
             }
             case 16: {
-              bitField0_ |= 0x00000002;
-              error_ = input.readInt32();
+              int rawValue = input.readEnum();
+              com.orbekk.protobuf.Rpc.Response.Error value = com.orbekk.protobuf.Rpc.Response.Error.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(2, rawValue);
+              } else {
+                bitField0_ |= 0x00000002;
+                error_ = value;
+              }
               break;
             }
             case 26: {
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000008;
               errorMessage_ = input.readBytes();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000004;
+              appError_ = input.readInt32();
               break;
             }
           }
@@ -957,15 +1074,18 @@ public final class Rpc {
         return this;
       }
       
-      // optional int32 error = 2 [default = 0];
-      private int error_ ;
+      // optional .com.orbekk.protobuf.Response.Error error = 2;
+      private com.orbekk.protobuf.Rpc.Response.Error error_ = com.orbekk.protobuf.Rpc.Response.Error.UNKNOWN_SERVICE;
       public boolean hasError() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getError() {
+      public com.orbekk.protobuf.Rpc.Response.Error getError() {
         return error_;
       }
-      public Builder setError(int value) {
+      public Builder setError(com.orbekk.protobuf.Rpc.Response.Error value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
         bitField0_ |= 0x00000002;
         error_ = value;
         onChanged();
@@ -973,7 +1093,28 @@ public final class Rpc {
       }
       public Builder clearError() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        error_ = 0;
+        error_ = com.orbekk.protobuf.Rpc.Response.Error.UNKNOWN_SERVICE;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 app_error = 4;
+      private int appError_ ;
+      public boolean hasAppError() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public int getAppError() {
+        return appError_;
+      }
+      public Builder setAppError(int value) {
+        bitField0_ |= 0x00000004;
+        appError_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearAppError() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        appError_ = 0;
         onChanged();
         return this;
       }
@@ -981,7 +1122,7 @@ public final class Rpc {
       // optional string error_message = 3;
       private Object errorMessage_ = "";
       public boolean hasErrorMessage() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public String getErrorMessage() {
         Object ref = errorMessage_;
@@ -997,19 +1138,19 @@ public final class Rpc {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000008;
         errorMessage_ = value;
         onChanged();
         return this;
       }
       public Builder clearErrorMessage() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         errorMessage_ = getDefaultInstance().getErrorMessage();
         onChanged();
         return this;
       }
       void setErrorMessage(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         errorMessage_ = value;
         onChanged();
       }
@@ -1047,9 +1188,12 @@ public final class Rpc {
       "\n+src/main/java/com/orbekk/protobuf/Rpc." +
       "proto\022\023com.orbekk.protobuf\"P\n\007Request\022\031\n" +
       "\021full_service_name\030\001 \001(\t\022\023\n\013method_name\030" +
-      "\002 \001(\t\022\025\n\rrequest_proto\030\003 \001(\014\"K\n\010Response" +
-      "\022\026\n\016response_proto\030\001 \001(\014\022\020\n\005error\030\002 \001(\005:" +
-      "\0010\022\025\n\rerror_message\030\003 \001(\t"
+      "\002 \001(\t\022\025\n\rrequest_proto\030\003 \001(\014\"\317\001\n\010Respons" +
+      "e\022\026\n\016response_proto\030\001 \001(\014\0222\n\005error\030\002 \001(\016" +
+      "2#.com.orbekk.protobuf.Response.Error\022\021\n" +
+      "\tapp_error\030\004 \001(\005\022\025\n\rerror_message\030\003 \001(\t\"" +
+      "M\n\005Error\022\023\n\017UNKNOWN_SERVICE\020\000\022\022\n\016UNKNOWN" +
+      "_METHOD\020\001\022\014\n\010CANCELED\020\002\022\r\n\tAPP_ERROR\020\003"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1069,7 +1213,7 @@ public final class Rpc {
           internal_static_com_orbekk_protobuf_Response_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_orbekk_protobuf_Response_descriptor,
-              new java.lang.String[] { "ResponseProto", "Error", "ErrorMessage", },
+              new java.lang.String[] { "ResponseProto", "Error", "AppError", "ErrorMessage", },
               com.orbekk.protobuf.Rpc.Response.class,
               com.orbekk.protobuf.Rpc.Response.Builder.class);
           return null;

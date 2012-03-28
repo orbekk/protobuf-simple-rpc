@@ -10,6 +10,13 @@ message Request {
 // Next tag: 4
 message Response {
     optional bytes response_proto = 1;
-    optional int32 error = 2 [default = 0];
+    enum Error {
+        UNKNOWN_SERVICE = 0;
+        UNKNOWN_METHOD = 1;
+        CANCELED = 2;
+        APP_ERROR = 3;
+    };
+    optional Error error = 2;
+    optional int32 app_error = 4;
     optional string error_message = 3;
 }
