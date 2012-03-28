@@ -8,17 +8,20 @@ message Request {
     optional int64 request_id = 4;
 }
 
-// Next tag: 6
+// Next tag: 8
 message Response {
     optional bytes response_proto = 1;
-    enum Error {
+    enum RpcError {
         UNKNOWN_SERVICE = 0;
         UNKNOWN_METHOD = 1;
         CANCELED = 2;
-        APP_ERROR = 3;
     };
-    optional Error error = 2;
-    optional int32 app_error = 4;
-    optional string error_message = 3;
+    optional RpcError error = 2;
     optional int64 request_id = 5;
+    
+    // Rpc status
+    optional bool hasFailed = 4;
+    optional bool canceled = 6;
+    optional bool done = 7 [default = true];
+    optional string error_text = 3;
 }

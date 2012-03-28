@@ -20,6 +20,7 @@ public class ProtobufFunctionalTest {
     Test.Service service = Test.Service.newStub(channel);
     
     @Before public void setUp() {
+        server.start();
         server.registerService(directService);
     }
     
@@ -37,6 +38,7 @@ public class ProtobufFunctionalTest {
         public void testB(RpcController controller, Type1 request,
                 RpcCallback<Type2> done) {
             controller.setFailed("error");
+            done.run(null);
         }
 
         @Override
@@ -54,15 +56,50 @@ public class ProtobufFunctionalTest {
         }
     }
     
-    @org.junit.Test public void respondsNormally() {
+    @org.junit.Test public void respondsNormally() throws Exception {
         Test.Type1 request = Test.Type1.newBuilder().build();
         int count = 10;
         final CountDownLatch stop = new CountDownLatch(count);
-        service.testA(null, request, new RpcCallback<Type2>() {
+        for (int i = 0; i < count; i++) {
+            final Rpc rpc = new Rpc();
+            service.testA(rpc, request, new RpcCallback<Type2>() {
+                @Override public void run(Type2 result) {
+                    assertThat(result.getMessage(), is("TestA"));
+                    assertThat(rpc.isOk(), is(true));
+                    stop.countDown();
+                }
+            });
+        }
+        stop.await();
+    }
+    
+    @org.junit.Test public void testError() throws Exception {
+        Test.Type1 request = Test.Type1.newBuilder().build();
+        final CountDownLatch stop = new CountDownLatch(1);
+        final Rpc rpc = new Rpc();
+        service.testB(rpc, request, new RpcCallback<Type2>() {
             @Override public void run(Type2 result) {
-                assertThat(result.getMessage(), is("TestA"));
+                assertThat(rpc.isOk(), is(false));
+                assertThat(rpc.failed(), is(true));
+                assertThat(rpc.errorText(), is("error"));
                 stop.countDown();
             }
         });
+        stop.await();
+    }
+    
+    @org.junit.Test public void failsWhenServerDies() throws Exception {
+        Test.Type1 request = Test.Type1.newBuilder().build();
+        final CountDownLatch stop = new CountDownLatch(1);
+        final Rpc rpc = new Rpc();
+        service.testC(rpc, request, new RpcCallback<Type2>() {
+            @Override public void run(Type2 result) {
+                assertThat(rpc.failed(), is(true));
+                assertThat(rpc.errorText(), is("connection closed"));
+                stop.countDown();
+            }
+        });
+        server.interrupt();
+        stop.await();
     }
 }
