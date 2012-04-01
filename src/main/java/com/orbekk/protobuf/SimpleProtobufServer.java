@@ -27,6 +27,8 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.HashSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.google.protobuf.Descriptors;
 import com.google.protobuf.Message;
@@ -34,30 +36,34 @@ import com.google.protobuf.RpcCallback;
 import com.google.protobuf.Service;
 
 public class SimpleProtobufServer extends Thread {
-    private static Logger logger = Logger.getLogger(
+    private volatile boolean isStopped = false;
+    private final static Logger logger = Logger.getLogger(
             SimpleProtobufServer.class.getName());
-    private ServerSocket serverSocket;
-    private Set<Socket> activeClientSockets = 
+    private final ServerSocket serverSocket;
+    private final Set<Socket> activeClientSockets = 
             Collections.synchronizedSet(new HashSet<Socket>());
-    private Map<String, Service> registeredServices =
-            Collections.synchronizedMap(
-                    new HashMap<String, Service>());
+    private final Map<String, Service> registeredServices =
+            Collections.synchronizedMap(new HashMap<String, Service>());
+    private final ExecutorService pool;
 
-    public static SimpleProtobufServer create(int port) {
+    public static SimpleProtobufServer create(int port, int maxNumHandlers) {
         try {
             InetSocketAddress address = new InetSocketAddress(port);
             ServerSocket serverSocket = new ServerSocket();
             serverSocket.setReuseAddress(true);
             serverSocket.bind(address);
-            return new SimpleProtobufServer(serverSocket);
+            ExecutorService pool =
+                    Executors.newFixedThreadPool(maxNumHandlers);
+            return new SimpleProtobufServer(serverSocket, pool);
         } catch (IOException e) {
             logger.log(Level.WARNING, "Could not create server. ", e);
             return null;
         }
     }
 
-    public SimpleProtobufServer(ServerSocket serverSocket) {
+    public SimpleProtobufServer(ServerSocket serverSocket, ExecutorService pool) {
         this.serverSocket = serverSocket;
+        this.pool = pool;
     }
     
     public int getPort() {
@@ -111,8 +117,12 @@ public class SimpleProtobufServer extends Thread {
     }
 
     private void handleConnection(final Socket connection) {
-        new Thread(new Runnable() {
+        if (isStopped) {
+            return;
+        }
+        Runnable handler = new Runnable() {
             @Override public void run() {
+                logger.info("Handling client connection " + connection);
                 activeClientSockets.add(connection);
                 try {
                     while (true) {
@@ -137,11 +147,13 @@ public class SimpleProtobufServer extends Thread {
                     activeClientSockets.remove(connection);
                 }
             }
-        }).start();
+        };
+        pool.execute(handler);
     }
     
     @Override public void interrupt() {
         super.interrupt();
+        isStopped = true;
         for (Socket socket : activeClientSockets) {
             try {
                 socket.close();
