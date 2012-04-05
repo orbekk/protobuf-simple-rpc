@@ -15,6 +15,7 @@ message Response {
         UNKNOWN_SERVICE = 0;
         UNKNOWN_METHOD = 1;
         CANCELED = 2;
+        INVALID_PROTOBUF = 3;
     };
     optional RpcError error = 2;
     optional int64 request_id = 5;

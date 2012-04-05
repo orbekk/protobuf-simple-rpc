@@ -8,15 +8,11 @@ public final class Example {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface EmptyOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-  }
   public static final class Empty extends
-      com.google.protobuf.GeneratedMessage
-      implements EmptyOrBuilder {
+      com.google.protobuf.GeneratedMessage {
     // Use Empty.newBuilder() to construct.
-    private Empty(Builder builder) {
-      super(builder);
+    private Empty() {
+      initFields();
     }
     private Empty(boolean noInit) {}
     
@@ -41,12 +37,7 @@ public final class Example {
     
     private void initFields() {
     }
-    private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      memoizedIsInitialized = 1;
       return true;
     }
     
@@ -65,13 +56,6 @@ public final class Example {
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
-    }
-    
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
     }
     
     public static com.orbekk.example.Example.Empty parseFrom(
@@ -148,49 +132,34 @@ public final class Example {
     }
     public Builder toBuilder() { return newBuilder(this); }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.orbekk.example.Example.EmptyOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.orbekk.example.Example.internal_static_com_orbekk_example_Empty_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.orbekk.example.Example.internal_static_com_orbekk_example_Empty_fieldAccessorTable;
-      }
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
+      private com.orbekk.example.Example.Empty result;
       
       // Construct using com.orbekk.example.Example.Empty.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
+      private Builder() {}
+      
+      private static Builder create() {
+        Builder builder = new Builder();
+        builder.result = new com.orbekk.example.Example.Empty();
+        return builder;
       }
       
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
+      protected com.orbekk.example.Example.Empty internalGetResult() {
+        return result;
       }
       
       public Builder clear() {
-        super.clear();
+        if (result == null) {
+          throw new IllegalStateException(
+            "Cannot call clear() after build().");
+        }
+        result = new com.orbekk.example.Example.Empty();
         return this;
       }
       
       public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        return create().mergeFrom(result);
       }
       
       public com.google.protobuf.Descriptors.Descriptor
@@ -202,28 +171,33 @@ public final class Example {
         return com.orbekk.example.Example.Empty.getDefaultInstance();
       }
       
+      public boolean isInitialized() {
+        return result.isInitialized();
+      }
       public com.orbekk.example.Example.Empty build() {
-        com.orbekk.example.Example.Empty result = buildPartial();
-        if (!result.isInitialized()) {
+        if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
-        return result;
+        return buildPartial();
       }
       
       private com.orbekk.example.Example.Empty buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.orbekk.example.Example.Empty result = buildPartial();
-        if (!result.isInitialized()) {
+        if (!isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
         }
-        return result;
+        return buildPartial();
       }
       
       public com.orbekk.example.Example.Empty buildPartial() {
-        com.orbekk.example.Example.Empty result = new com.orbekk.example.Example.Empty(this);
-        onBuilt();
-        return result;
+        if (result == null) {
+          throw new IllegalStateException(
+            "build() has already been called on this Builder.");
+        }
+        com.orbekk.example.Example.Empty returnMe = result;
+        result = null;
+        return returnMe;
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -241,10 +215,6 @@ public final class Example {
         return this;
       }
       
-      public final boolean isInitialized() {
-        return true;
-      }
-      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -257,13 +227,11 @@ public final class Example {
           switch (tag) {
             case 0:
               this.setUnknownFields(unknownFields.build());
-              onChanged();
               return this;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 this.setUnknownFields(unknownFields.build());
-                onChanged();
                 return this;
               }
               break;
@@ -278,25 +246,18 @@ public final class Example {
     
     static {
       defaultInstance = new Empty(true);
+      com.orbekk.example.Example.internalForceInit();
       defaultInstance.initFields();
     }
     
     // @@protoc_insertion_point(class_scope:com.orbekk.example.Empty)
   }
   
-  public interface FortuneReplyOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-    
-    // required string fortune = 1;
-    boolean hasFortune();
-    String getFortune();
-  }
   public static final class FortuneReply extends
-      com.google.protobuf.GeneratedMessage
-      implements FortuneReplyOrBuilder {
+      com.google.protobuf.GeneratedMessage {
     // Use FortuneReply.newBuilder() to construct.
-    private FortuneReply(Builder builder) {
-      super(builder);
+    private FortuneReply() {
+      initFields();
     }
     private FortuneReply(boolean noInit) {}
     
@@ -319,60 +280,25 @@ public final class Example {
       return com.orbekk.example.Example.internal_static_com_orbekk_example_FortuneReply_fieldAccessorTable;
     }
     
-    private int bitField0_;
     // required string fortune = 1;
     public static final int FORTUNE_FIELD_NUMBER = 1;
-    private java.lang.Object fortune_;
-    public boolean hasFortune() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public String getFortune() {
-      java.lang.Object ref = fortune_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          fortune_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getFortuneBytes() {
-      java.lang.Object ref = fortune_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        fortune_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
+    private boolean hasFortune;
+    private java.lang.String fortune_ = "";
+    public boolean hasFortune() { return hasFortune; }
+    public java.lang.String getFortune() { return fortune_; }
     
     private void initFields() {
-      fortune_ = "";
     }
-    private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      if (!hasFortune()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
+      if (!hasFortune) return false;
       return true;
     }
     
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getFortuneBytes());
+      if (hasFortune()) {
+        output.writeString(1, getFortune());
       }
       getUnknownFields().writeTo(output);
     }
@@ -383,20 +309,13 @@ public final class Example {
       if (size != -1) return size;
     
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (hasFortune()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getFortuneBytes());
+          .computeStringSize(1, getFortune());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
-    }
-    
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
     }
     
     public static com.orbekk.example.Example.FortuneReply parseFrom(
@@ -473,51 +392,34 @@ public final class Example {
     }
     public Builder toBuilder() { return newBuilder(this); }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.orbekk.example.Example.FortuneReplyOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.orbekk.example.Example.internal_static_com_orbekk_example_FortuneReply_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.orbekk.example.Example.internal_static_com_orbekk_example_FortuneReply_fieldAccessorTable;
-      }
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
+      private com.orbekk.example.Example.FortuneReply result;
       
       // Construct using com.orbekk.example.Example.FortuneReply.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
+      private Builder() {}
+      
+      private static Builder create() {
+        Builder builder = new Builder();
+        builder.result = new com.orbekk.example.Example.FortuneReply();
+        return builder;
       }
       
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
+      protected com.orbekk.example.Example.FortuneReply internalGetResult() {
+        return result;
       }
       
       public Builder clear() {
-        super.clear();
-        fortune_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
+        if (result == null) {
+          throw new IllegalStateException(
+            "Cannot call clear() after build().");
+        }
+        result = new com.orbekk.example.Example.FortuneReply();
         return this;
       }
       
       public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        return create().mergeFrom(result);
       }
       
       public com.google.protobuf.Descriptors.Descriptor
@@ -529,35 +431,33 @@ public final class Example {
         return com.orbekk.example.Example.FortuneReply.getDefaultInstance();
       }
       
+      public boolean isInitialized() {
+        return result.isInitialized();
+      }
       public com.orbekk.example.Example.FortuneReply build() {
-        com.orbekk.example.Example.FortuneReply result = buildPartial();
-        if (!result.isInitialized()) {
+        if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
-        return result;
+        return buildPartial();
       }
       
       private com.orbekk.example.Example.FortuneReply buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.orbekk.example.Example.FortuneReply result = buildPartial();
-        if (!result.isInitialized()) {
+        if (!isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
         }
-        return result;
+        return buildPartial();
       }
       
       public com.orbekk.example.Example.FortuneReply buildPartial() {
-        com.orbekk.example.Example.FortuneReply result = new com.orbekk.example.Example.FortuneReply(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
+        if (result == null) {
+          throw new IllegalStateException(
+            "build() has already been called on this Builder.");
         }
-        result.fortune_ = fortune_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        com.orbekk.example.Example.FortuneReply returnMe = result;
+        result = null;
+        return returnMe;
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -578,14 +478,6 @@ public final class Example {
         return this;
       }
       
-      public final boolean isInitialized() {
-        if (!hasFortune()) {
-          
-          return false;
-        }
-        return true;
-      }
-      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -598,62 +490,43 @@ public final class Example {
           switch (tag) {
             case 0:
               this.setUnknownFields(unknownFields.build());
-              onChanged();
               return this;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 this.setUnknownFields(unknownFields.build());
-                onChanged();
                 return this;
               }
               break;
             }
             case 10: {
-              bitField0_ |= 0x00000001;
-              fortune_ = input.readBytes();
+              setFortune(input.readString());
               break;
             }
           }
         }
       }
       
-      private int bitField0_;
       
       // required string fortune = 1;
-      private java.lang.Object fortune_ = "";
       public boolean hasFortune() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return result.hasFortune();
       }
-      public String getFortune() {
-        java.lang.Object ref = fortune_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          fortune_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public java.lang.String getFortune() {
+        return result.getFortune();
       }
-      public Builder setFortune(String value) {
+      public Builder setFortune(java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
-        fortune_ = value;
-        onChanged();
+  result.hasFortune = true;
+        result.fortune_ = value;
         return this;
       }
       public Builder clearFortune() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        fortune_ = getDefaultInstance().getFortune();
-        onChanged();
+        result.hasFortune = false;
+        result.fortune_ = getDefaultInstance().getFortune();
         return this;
-      }
-      void setFortune(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
-        fortune_ = value;
-        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:com.orbekk.example.FortuneReply)
@@ -661,6 +534,7 @@ public final class Example {
     
     static {
       defaultInstance = new FortuneReply(true);
+      com.orbekk.example.Example.internalForceInit();
       defaultInstance.initFields();
     }
     
@@ -682,7 +556,7 @@ public final class Example {
     public static com.google.protobuf.Service newReflectiveService(
         final Interface impl) {
       return new FortuneService() {
-        @java.lang.Override
+        @Override
         public  void getFortune(
             com.google.protobuf.RpcController controller,
             com.orbekk.example.Example.Empty request,
@@ -943,6 +817,8 @@ public final class Example {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
+  
+  public static void internalForceInit() {}
   
   // @@protoc_insertion_point(outer_class_scope)
 }

@@ -156,6 +156,9 @@ public class RpcChannel extends Thread implements
                 Data.Response response;
                 response = Data.Response.parseDelimitedFrom(
                         socket.getInputStream());
+                if (response == null) {
+                    throw new IOException("No response.");
+                }
                 finishRequest(response);
             }
         } catch (IOException e) {

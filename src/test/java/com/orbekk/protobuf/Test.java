@@ -8,27 +8,11 @@ public final class Test {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface Type1OrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-    
-    // optional int32 a = 1;
-    boolean hasA();
-    int getA();
-    
-    // optional int32 b = 2;
-    boolean hasB();
-    int getB();
-    
-    // optional string message = 3;
-    boolean hasMessage();
-    String getMessage();
-  }
   public static final class Type1 extends
-      com.google.protobuf.GeneratedMessage
-      implements Type1OrBuilder {
+      com.google.protobuf.GeneratedMessage {
     // Use Type1.newBuilder() to construct.
-    private Type1(Builder builder) {
-      super(builder);
+    private Type1() {
+      initFields();
     }
     private Type1(boolean noInit) {}
     
@@ -51,84 +35,44 @@ public final class Test {
       return com.orbekk.protobuf.Test.internal_static_com_orbekk_protobuf_Type1_fieldAccessorTable;
     }
     
-    private int bitField0_;
     // optional int32 a = 1;
     public static final int A_FIELD_NUMBER = 1;
-    private int a_;
-    public boolean hasA() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public int getA() {
-      return a_;
-    }
+    private boolean hasA;
+    private int a_ = 0;
+    public boolean hasA() { return hasA; }
+    public int getA() { return a_; }
     
     // optional int32 b = 2;
     public static final int B_FIELD_NUMBER = 2;
-    private int b_;
-    public boolean hasB() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    public int getB() {
-      return b_;
-    }
+    private boolean hasB;
+    private int b_ = 0;
+    public boolean hasB() { return hasB; }
+    public int getB() { return b_; }
     
     // optional string message = 3;
     public static final int MESSAGE_FIELD_NUMBER = 3;
-    private java.lang.Object message_;
-    public boolean hasMessage() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public String getMessage() {
-      java.lang.Object ref = message_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          message_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getMessageBytes() {
-      java.lang.Object ref = message_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        message_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
+    private boolean hasMessage;
+    private java.lang.String message_ = "";
+    public boolean hasMessage() { return hasMessage; }
+    public java.lang.String getMessage() { return message_; }
     
     private void initFields() {
-      a_ = 0;
-      b_ = 0;
-      message_ = "";
     }
-    private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      memoizedIsInitialized = 1;
       return true;
     }
     
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, a_);
+      if (hasA()) {
+        output.writeInt32(1, getA());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, b_);
+      if (hasB()) {
+        output.writeInt32(2, getB());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getMessageBytes());
+      if (hasMessage()) {
+        output.writeString(3, getMessage());
       }
       getUnknownFields().writeTo(output);
     }
@@ -139,28 +83,21 @@ public final class Test {
       if (size != -1) return size;
     
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (hasA()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, a_);
+          .computeInt32Size(1, getA());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (hasB()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, b_);
+          .computeInt32Size(2, getB());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (hasMessage()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getMessageBytes());
+          .computeStringSize(3, getMessage());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
-    }
-    
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
     }
     
     public static com.orbekk.protobuf.Test.Type1 parseFrom(
@@ -237,55 +174,34 @@ public final class Test {
     }
     public Builder toBuilder() { return newBuilder(this); }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.orbekk.protobuf.Test.Type1OrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.orbekk.protobuf.Test.internal_static_com_orbekk_protobuf_Type1_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.orbekk.protobuf.Test.internal_static_com_orbekk_protobuf_Type1_fieldAccessorTable;
-      }
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
+      private com.orbekk.protobuf.Test.Type1 result;
       
       // Construct using com.orbekk.protobuf.Test.Type1.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
+      private Builder() {}
+      
+      private static Builder create() {
+        Builder builder = new Builder();
+        builder.result = new com.orbekk.protobuf.Test.Type1();
+        return builder;
       }
       
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
+      protected com.orbekk.protobuf.Test.Type1 internalGetResult() {
+        return result;
       }
       
       public Builder clear() {
-        super.clear();
-        a_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        b_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        message_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
+        if (result == null) {
+          throw new IllegalStateException(
+            "Cannot call clear() after build().");
+        }
+        result = new com.orbekk.protobuf.Test.Type1();
         return this;
       }
       
       public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        return create().mergeFrom(result);
       }
       
       public com.google.protobuf.Descriptors.Descriptor
@@ -297,43 +213,33 @@ public final class Test {
         return com.orbekk.protobuf.Test.Type1.getDefaultInstance();
       }
       
+      public boolean isInitialized() {
+        return result.isInitialized();
+      }
       public com.orbekk.protobuf.Test.Type1 build() {
-        com.orbekk.protobuf.Test.Type1 result = buildPartial();
-        if (!result.isInitialized()) {
+        if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
-        return result;
+        return buildPartial();
       }
       
       private com.orbekk.protobuf.Test.Type1 buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.orbekk.protobuf.Test.Type1 result = buildPartial();
-        if (!result.isInitialized()) {
+        if (!isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
         }
-        return result;
+        return buildPartial();
       }
       
       public com.orbekk.protobuf.Test.Type1 buildPartial() {
-        com.orbekk.protobuf.Test.Type1 result = new com.orbekk.protobuf.Test.Type1(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
+        if (result == null) {
+          throw new IllegalStateException(
+            "build() has already been called on this Builder.");
         }
-        result.a_ = a_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.b_ = b_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.message_ = message_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        com.orbekk.protobuf.Test.Type1 returnMe = result;
+        result = null;
+        return returnMe;
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -360,10 +266,6 @@ public final class Test {
         return this;
       }
       
-      public final boolean isInitialized() {
-        return true;
-      }
-      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -376,114 +278,87 @@ public final class Test {
           switch (tag) {
             case 0:
               this.setUnknownFields(unknownFields.build());
-              onChanged();
               return this;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 this.setUnknownFields(unknownFields.build());
-                onChanged();
                 return this;
               }
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
-              a_ = input.readInt32();
+              setA(input.readInt32());
               break;
             }
             case 16: {
-              bitField0_ |= 0x00000002;
-              b_ = input.readInt32();
+              setB(input.readInt32());
               break;
             }
             case 26: {
-              bitField0_ |= 0x00000004;
-              message_ = input.readBytes();
+              setMessage(input.readString());
               break;
             }
           }
         }
       }
       
-      private int bitField0_;
       
       // optional int32 a = 1;
-      private int a_ ;
       public boolean hasA() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return result.hasA();
       }
       public int getA() {
-        return a_;
+        return result.getA();
       }
       public Builder setA(int value) {
-        bitField0_ |= 0x00000001;
-        a_ = value;
-        onChanged();
+        result.hasA = true;
+        result.a_ = value;
         return this;
       }
       public Builder clearA() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        a_ = 0;
-        onChanged();
+        result.hasA = false;
+        result.a_ = 0;
         return this;
       }
       
       // optional int32 b = 2;
-      private int b_ ;
       public boolean hasB() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return result.hasB();
       }
       public int getB() {
-        return b_;
+        return result.getB();
       }
       public Builder setB(int value) {
-        bitField0_ |= 0x00000002;
-        b_ = value;
-        onChanged();
+        result.hasB = true;
+        result.b_ = value;
         return this;
       }
       public Builder clearB() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        b_ = 0;
-        onChanged();
+        result.hasB = false;
+        result.b_ = 0;
         return this;
       }
       
       // optional string message = 3;
-      private java.lang.Object message_ = "";
       public boolean hasMessage() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return result.hasMessage();
       }
-      public String getMessage() {
-        java.lang.Object ref = message_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          message_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public java.lang.String getMessage() {
+        return result.getMessage();
       }
-      public Builder setMessage(String value) {
+      public Builder setMessage(java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
-        message_ = value;
-        onChanged();
+  result.hasMessage = true;
+        result.message_ = value;
         return this;
       }
       public Builder clearMessage() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        message_ = getDefaultInstance().getMessage();
-        onChanged();
+        result.hasMessage = false;
+        result.message_ = getDefaultInstance().getMessage();
         return this;
-      }
-      void setMessage(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000004;
-        message_ = value;
-        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:com.orbekk.protobuf.Type1)
@@ -491,29 +366,18 @@ public final class Test {
     
     static {
       defaultInstance = new Type1(true);
+      com.orbekk.protobuf.Test.internalForceInit();
       defaultInstance.initFields();
     }
     
     // @@protoc_insertion_point(class_scope:com.orbekk.protobuf.Type1)
   }
   
-  public interface Type2OrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-    
-    // optional int32 result = 1;
-    boolean hasResult();
-    int getResult();
-    
-    // optional string message = 2;
-    boolean hasMessage();
-    String getMessage();
-  }
   public static final class Type2 extends
-      com.google.protobuf.GeneratedMessage
-      implements Type2OrBuilder {
+      com.google.protobuf.GeneratedMessage {
     // Use Type2.newBuilder() to construct.
-    private Type2(Builder builder) {
-      super(builder);
+    private Type2() {
+      initFields();
     }
     private Type2(boolean noInit) {}
     
@@ -536,70 +400,34 @@ public final class Test {
       return com.orbekk.protobuf.Test.internal_static_com_orbekk_protobuf_Type2_fieldAccessorTable;
     }
     
-    private int bitField0_;
     // optional int32 result = 1;
     public static final int RESULT_FIELD_NUMBER = 1;
-    private int result_;
-    public boolean hasResult() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public int getResult() {
-      return result_;
-    }
+    private boolean hasResult;
+    private int result_ = 0;
+    public boolean hasResult() { return hasResult; }
+    public int getResult() { return result_; }
     
     // optional string message = 2;
     public static final int MESSAGE_FIELD_NUMBER = 2;
-    private java.lang.Object message_;
-    public boolean hasMessage() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    public String getMessage() {
-      java.lang.Object ref = message_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          message_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getMessageBytes() {
-      java.lang.Object ref = message_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        message_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
+    private boolean hasMessage;
+    private java.lang.String message_ = "";
+    public boolean hasMessage() { return hasMessage; }
+    public java.lang.String getMessage() { return message_; }
     
     private void initFields() {
-      result_ = 0;
-      message_ = "";
     }
-    private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      memoizedIsInitialized = 1;
       return true;
     }
     
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, result_);
+      if (hasResult()) {
+        output.writeInt32(1, getResult());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getMessageBytes());
+      if (hasMessage()) {
+        output.writeString(2, getMessage());
       }
       getUnknownFields().writeTo(output);
     }
@@ -610,24 +438,17 @@ public final class Test {
       if (size != -1) return size;
     
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (hasResult()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, result_);
+          .computeInt32Size(1, getResult());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (hasMessage()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getMessageBytes());
+          .computeStringSize(2, getMessage());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
-    }
-    
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
     }
     
     public static com.orbekk.protobuf.Test.Type2 parseFrom(
@@ -704,53 +525,34 @@ public final class Test {
     }
     public Builder toBuilder() { return newBuilder(this); }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.orbekk.protobuf.Test.Type2OrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.orbekk.protobuf.Test.internal_static_com_orbekk_protobuf_Type2_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.orbekk.protobuf.Test.internal_static_com_orbekk_protobuf_Type2_fieldAccessorTable;
-      }
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
+      private com.orbekk.protobuf.Test.Type2 result;
       
       // Construct using com.orbekk.protobuf.Test.Type2.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
+      private Builder() {}
+      
+      private static Builder create() {
+        Builder builder = new Builder();
+        builder.result = new com.orbekk.protobuf.Test.Type2();
+        return builder;
       }
       
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
+      protected com.orbekk.protobuf.Test.Type2 internalGetResult() {
+        return result;
       }
       
       public Builder clear() {
-        super.clear();
-        result_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        message_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
+        if (result == null) {
+          throw new IllegalStateException(
+            "Cannot call clear() after build().");
+        }
+        result = new com.orbekk.protobuf.Test.Type2();
         return this;
       }
       
       public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        return create().mergeFrom(result);
       }
       
       public com.google.protobuf.Descriptors.Descriptor
@@ -762,39 +564,33 @@ public final class Test {
         return com.orbekk.protobuf.Test.Type2.getDefaultInstance();
       }
       
+      public boolean isInitialized() {
+        return result.isInitialized();
+      }
       public com.orbekk.protobuf.Test.Type2 build() {
-        com.orbekk.protobuf.Test.Type2 result = buildPartial();
-        if (!result.isInitialized()) {
+        if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
-        return result;
+        return buildPartial();
       }
       
       private com.orbekk.protobuf.Test.Type2 buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.orbekk.protobuf.Test.Type2 result = buildPartial();
-        if (!result.isInitialized()) {
+        if (!isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
         }
-        return result;
+        return buildPartial();
       }
       
       public com.orbekk.protobuf.Test.Type2 buildPartial() {
-        com.orbekk.protobuf.Test.Type2 result = new com.orbekk.protobuf.Test.Type2(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
+        if (result == null) {
+          throw new IllegalStateException(
+            "build() has already been called on this Builder.");
         }
-        result.result_ = result_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.message_ = message_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        com.orbekk.protobuf.Test.Type2 returnMe = result;
+        result = null;
+        return returnMe;
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -818,10 +614,6 @@ public final class Test {
         return this;
       }
       
-      public final boolean isInitialized() {
-        return true;
-      }
-      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -834,88 +626,65 @@ public final class Test {
           switch (tag) {
             case 0:
               this.setUnknownFields(unknownFields.build());
-              onChanged();
               return this;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 this.setUnknownFields(unknownFields.build());
-                onChanged();
                 return this;
               }
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
-              result_ = input.readInt32();
+              setResult(input.readInt32());
               break;
             }
             case 18: {
-              bitField0_ |= 0x00000002;
-              message_ = input.readBytes();
+              setMessage(input.readString());
               break;
             }
           }
         }
       }
       
-      private int bitField0_;
       
       // optional int32 result = 1;
-      private int result_ ;
       public boolean hasResult() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return result.hasResult();
       }
       public int getResult() {
-        return result_;
+        return result.getResult();
       }
       public Builder setResult(int value) {
-        bitField0_ |= 0x00000001;
-        result_ = value;
-        onChanged();
+        result.hasResult = true;
+        result.result_ = value;
         return this;
       }
       public Builder clearResult() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        result_ = 0;
-        onChanged();
+        result.hasResult = false;
+        result.result_ = 0;
         return this;
       }
       
       // optional string message = 2;
-      private java.lang.Object message_ = "";
       public boolean hasMessage() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return result.hasMessage();
       }
-      public String getMessage() {
-        java.lang.Object ref = message_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          message_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public java.lang.String getMessage() {
+        return result.getMessage();
       }
-      public Builder setMessage(String value) {
+      public Builder setMessage(java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
-        message_ = value;
-        onChanged();
+  result.hasMessage = true;
+        result.message_ = value;
         return this;
       }
       public Builder clearMessage() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        message_ = getDefaultInstance().getMessage();
-        onChanged();
+        result.hasMessage = false;
+        result.message_ = getDefaultInstance().getMessage();
         return this;
-      }
-      void setMessage(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000002;
-        message_ = value;
-        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:com.orbekk.protobuf.Type2)
@@ -923,6 +692,7 @@ public final class Test {
     
     static {
       defaultInstance = new Type2(true);
+      com.orbekk.protobuf.Test.internalForceInit();
       defaultInstance.initFields();
     }
     
@@ -954,7 +724,7 @@ public final class Test {
     public static com.google.protobuf.Service newReflectiveService(
         final Interface impl) {
       return new Service() {
-        @java.lang.Override
+        @Override
         public  void testA(
             com.google.protobuf.RpcController controller,
             com.orbekk.protobuf.Test.Type1 request,
@@ -962,7 +732,7 @@ public final class Test {
           impl.testA(controller, request, done);
         }
         
-        @java.lang.Override
+        @Override
         public  void testB(
             com.google.protobuf.RpcController controller,
             com.orbekk.protobuf.Test.Type1 request,
@@ -970,7 +740,7 @@ public final class Test {
           impl.testB(controller, request, done);
         }
         
-        @java.lang.Override
+        @Override
         public  void testC(
             com.google.protobuf.RpcController controller,
             com.orbekk.protobuf.Test.Type1 request,
@@ -1339,6 +1109,8 @@ public final class Test {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
+  
+  public static void internalForceInit() {}
   
   // @@protoc_insertion_point(outer_class_scope)
 }

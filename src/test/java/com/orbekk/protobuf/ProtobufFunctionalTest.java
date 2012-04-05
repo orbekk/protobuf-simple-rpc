@@ -28,7 +28,7 @@ import com.orbekk.protobuf.Test.Type2;
 
 public class ProtobufFunctionalTest {
     CountDownLatch returnC = new CountDownLatch(1);
-    SimpleProtobufServer server = SimpleProtobufServer.create(0, 50);
+    SimpleProtobufServer server = SimpleProtobufServer.create(0, 50, 1);
     int serverport = server.getPort();
     RpcChannel channel = RpcChannel.create("localhost", serverport);
     TestService directService = new TestService();

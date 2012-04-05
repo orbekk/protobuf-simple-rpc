@@ -8,31 +8,11 @@ public final class Data {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface RequestOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-    
-    // optional string full_service_name = 1;
-    boolean hasFullServiceName();
-    String getFullServiceName();
-    
-    // optional string method_name = 2;
-    boolean hasMethodName();
-    String getMethodName();
-    
-    // optional bytes request_proto = 3;
-    boolean hasRequestProto();
-    com.google.protobuf.ByteString getRequestProto();
-    
-    // optional int64 request_id = 4;
-    boolean hasRequestId();
-    long getRequestId();
-  }
   public static final class Request extends
-      com.google.protobuf.GeneratedMessage
-      implements RequestOrBuilder {
+      com.google.protobuf.GeneratedMessage {
     // Use Request.newBuilder() to construct.
-    private Request(Builder builder) {
-      super(builder);
+    private Request() {
+      initFields();
     }
     private Request(boolean noInit) {}
     
@@ -55,120 +35,54 @@ public final class Data {
       return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Request_fieldAccessorTable;
     }
     
-    private int bitField0_;
     // optional string full_service_name = 1;
     public static final int FULL_SERVICE_NAME_FIELD_NUMBER = 1;
-    private java.lang.Object fullServiceName_;
-    public boolean hasFullServiceName() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public String getFullServiceName() {
-      java.lang.Object ref = fullServiceName_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          fullServiceName_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getFullServiceNameBytes() {
-      java.lang.Object ref = fullServiceName_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        fullServiceName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
+    private boolean hasFullServiceName;
+    private java.lang.String fullServiceName_ = "";
+    public boolean hasFullServiceName() { return hasFullServiceName; }
+    public java.lang.String getFullServiceName() { return fullServiceName_; }
     
     // optional string method_name = 2;
     public static final int METHOD_NAME_FIELD_NUMBER = 2;
-    private java.lang.Object methodName_;
-    public boolean hasMethodName() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    public String getMethodName() {
-      java.lang.Object ref = methodName_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          methodName_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getMethodNameBytes() {
-      java.lang.Object ref = methodName_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        methodName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
+    private boolean hasMethodName;
+    private java.lang.String methodName_ = "";
+    public boolean hasMethodName() { return hasMethodName; }
+    public java.lang.String getMethodName() { return methodName_; }
     
     // optional bytes request_proto = 3;
     public static final int REQUEST_PROTO_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString requestProto_;
-    public boolean hasRequestProto() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public com.google.protobuf.ByteString getRequestProto() {
-      return requestProto_;
-    }
+    private boolean hasRequestProto;
+    private com.google.protobuf.ByteString requestProto_ = com.google.protobuf.ByteString.EMPTY;
+    public boolean hasRequestProto() { return hasRequestProto; }
+    public com.google.protobuf.ByteString getRequestProto() { return requestProto_; }
     
     // optional int64 request_id = 4;
     public static final int REQUEST_ID_FIELD_NUMBER = 4;
-    private long requestId_;
-    public boolean hasRequestId() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    public long getRequestId() {
-      return requestId_;
-    }
+    private boolean hasRequestId;
+    private long requestId_ = 0L;
+    public boolean hasRequestId() { return hasRequestId; }
+    public long getRequestId() { return requestId_; }
     
     private void initFields() {
-      fullServiceName_ = "";
-      methodName_ = "";
-      requestProto_ = com.google.protobuf.ByteString.EMPTY;
-      requestId_ = 0L;
     }
-    private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      memoizedIsInitialized = 1;
       return true;
     }
     
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getFullServiceNameBytes());
+      if (hasFullServiceName()) {
+        output.writeString(1, getFullServiceName());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getMethodNameBytes());
+      if (hasMethodName()) {
+        output.writeString(2, getMethodName());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, requestProto_);
+      if (hasRequestProto()) {
+        output.writeBytes(3, getRequestProto());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeInt64(4, requestId_);
+      if (hasRequestId()) {
+        output.writeInt64(4, getRequestId());
       }
       getUnknownFields().writeTo(output);
     }
@@ -179,32 +93,25 @@ public final class Data {
       if (size != -1) return size;
     
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (hasFullServiceName()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getFullServiceNameBytes());
+          .computeStringSize(1, getFullServiceName());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (hasMethodName()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getMethodNameBytes());
+          .computeStringSize(2, getMethodName());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (hasRequestProto()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, requestProto_);
+          .computeBytesSize(3, getRequestProto());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (hasRequestId()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, requestId_);
+          .computeInt64Size(4, getRequestId());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
-    }
-    
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
     }
     
     public static com.orbekk.protobuf.Data.Request parseFrom(
@@ -281,57 +188,34 @@ public final class Data {
     }
     public Builder toBuilder() { return newBuilder(this); }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.orbekk.protobuf.Data.RequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Request_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Request_fieldAccessorTable;
-      }
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
+      private com.orbekk.protobuf.Data.Request result;
       
       // Construct using com.orbekk.protobuf.Data.Request.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
+      private Builder() {}
+      
+      private static Builder create() {
+        Builder builder = new Builder();
+        builder.result = new com.orbekk.protobuf.Data.Request();
+        return builder;
       }
       
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
+      protected com.orbekk.protobuf.Data.Request internalGetResult() {
+        return result;
       }
       
       public Builder clear() {
-        super.clear();
-        fullServiceName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        methodName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        requestProto_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        requestId_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        if (result == null) {
+          throw new IllegalStateException(
+            "Cannot call clear() after build().");
+        }
+        result = new com.orbekk.protobuf.Data.Request();
         return this;
       }
       
       public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        return create().mergeFrom(result);
       }
       
       public com.google.protobuf.Descriptors.Descriptor
@@ -343,47 +227,33 @@ public final class Data {
         return com.orbekk.protobuf.Data.Request.getDefaultInstance();
       }
       
+      public boolean isInitialized() {
+        return result.isInitialized();
+      }
       public com.orbekk.protobuf.Data.Request build() {
-        com.orbekk.protobuf.Data.Request result = buildPartial();
-        if (!result.isInitialized()) {
+        if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
-        return result;
+        return buildPartial();
       }
       
       private com.orbekk.protobuf.Data.Request buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.orbekk.protobuf.Data.Request result = buildPartial();
-        if (!result.isInitialized()) {
+        if (!isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
         }
-        return result;
+        return buildPartial();
       }
       
       public com.orbekk.protobuf.Data.Request buildPartial() {
-        com.orbekk.protobuf.Data.Request result = new com.orbekk.protobuf.Data.Request(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
+        if (result == null) {
+          throw new IllegalStateException(
+            "build() has already been called on this Builder.");
         }
-        result.fullServiceName_ = fullServiceName_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.methodName_ = methodName_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.requestProto_ = requestProto_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.requestId_ = requestId_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        com.orbekk.protobuf.Data.Request returnMe = result;
+        result = null;
+        return returnMe;
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -413,10 +283,6 @@ public final class Data {
         return this;
       }
       
-      public final boolean isInitialized() {
-        return true;
-      }
-      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -429,157 +295,114 @@ public final class Data {
           switch (tag) {
             case 0:
               this.setUnknownFields(unknownFields.build());
-              onChanged();
               return this;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 this.setUnknownFields(unknownFields.build());
-                onChanged();
                 return this;
               }
               break;
             }
             case 10: {
-              bitField0_ |= 0x00000001;
-              fullServiceName_ = input.readBytes();
+              setFullServiceName(input.readString());
               break;
             }
             case 18: {
-              bitField0_ |= 0x00000002;
-              methodName_ = input.readBytes();
+              setMethodName(input.readString());
               break;
             }
             case 26: {
-              bitField0_ |= 0x00000004;
-              requestProto_ = input.readBytes();
+              setRequestProto(input.readBytes());
               break;
             }
             case 32: {
-              bitField0_ |= 0x00000008;
-              requestId_ = input.readInt64();
+              setRequestId(input.readInt64());
               break;
             }
           }
         }
       }
       
-      private int bitField0_;
       
       // optional string full_service_name = 1;
-      private java.lang.Object fullServiceName_ = "";
       public boolean hasFullServiceName() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return result.hasFullServiceName();
       }
-      public String getFullServiceName() {
-        java.lang.Object ref = fullServiceName_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          fullServiceName_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public java.lang.String getFullServiceName() {
+        return result.getFullServiceName();
       }
-      public Builder setFullServiceName(String value) {
+      public Builder setFullServiceName(java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
-        fullServiceName_ = value;
-        onChanged();
+  result.hasFullServiceName = true;
+        result.fullServiceName_ = value;
         return this;
       }
       public Builder clearFullServiceName() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        fullServiceName_ = getDefaultInstance().getFullServiceName();
-        onChanged();
+        result.hasFullServiceName = false;
+        result.fullServiceName_ = getDefaultInstance().getFullServiceName();
         return this;
-      }
-      void setFullServiceName(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
-        fullServiceName_ = value;
-        onChanged();
       }
       
       // optional string method_name = 2;
-      private java.lang.Object methodName_ = "";
       public boolean hasMethodName() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return result.hasMethodName();
       }
-      public String getMethodName() {
-        java.lang.Object ref = methodName_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          methodName_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public java.lang.String getMethodName() {
+        return result.getMethodName();
       }
-      public Builder setMethodName(String value) {
+      public Builder setMethodName(java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
-        methodName_ = value;
-        onChanged();
+  result.hasMethodName = true;
+        result.methodName_ = value;
         return this;
       }
       public Builder clearMethodName() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        methodName_ = getDefaultInstance().getMethodName();
-        onChanged();
+        result.hasMethodName = false;
+        result.methodName_ = getDefaultInstance().getMethodName();
         return this;
-      }
-      void setMethodName(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000002;
-        methodName_ = value;
-        onChanged();
       }
       
       // optional bytes request_proto = 3;
-      private com.google.protobuf.ByteString requestProto_ = com.google.protobuf.ByteString.EMPTY;
       public boolean hasRequestProto() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return result.hasRequestProto();
       }
       public com.google.protobuf.ByteString getRequestProto() {
-        return requestProto_;
+        return result.getRequestProto();
       }
       public Builder setRequestProto(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
-        requestProto_ = value;
-        onChanged();
+  result.hasRequestProto = true;
+        result.requestProto_ = value;
         return this;
       }
       public Builder clearRequestProto() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        requestProto_ = getDefaultInstance().getRequestProto();
-        onChanged();
+        result.hasRequestProto = false;
+        result.requestProto_ = getDefaultInstance().getRequestProto();
         return this;
       }
       
       // optional int64 request_id = 4;
-      private long requestId_ ;
       public boolean hasRequestId() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return result.hasRequestId();
       }
       public long getRequestId() {
-        return requestId_;
+        return result.getRequestId();
       }
       public Builder setRequestId(long value) {
-        bitField0_ |= 0x00000008;
-        requestId_ = value;
-        onChanged();
+        result.hasRequestId = true;
+        result.requestId_ = value;
         return this;
       }
       public Builder clearRequestId() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        requestId_ = 0L;
-        onChanged();
+        result.hasRequestId = false;
+        result.requestId_ = 0L;
         return this;
       }
       
@@ -588,49 +411,18 @@ public final class Data {
     
     static {
       defaultInstance = new Request(true);
+      com.orbekk.protobuf.Data.internalForceInit();
       defaultInstance.initFields();
     }
     
     // @@protoc_insertion_point(class_scope:com.orbekk.protobuf.Request)
   }
   
-  public interface ResponseOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-    
-    // optional bytes response_proto = 1;
-    boolean hasResponseProto();
-    com.google.protobuf.ByteString getResponseProto();
-    
-    // optional .com.orbekk.protobuf.Response.RpcError error = 2;
-    boolean hasError();
-    com.orbekk.protobuf.Data.Response.RpcError getError();
-    
-    // optional int64 request_id = 5;
-    boolean hasRequestId();
-    long getRequestId();
-    
-    // optional bool hasFailed = 4;
-    boolean hasHasFailed();
-    boolean getHasFailed();
-    
-    // optional bool canceled = 6;
-    boolean hasCanceled();
-    boolean getCanceled();
-    
-    // optional bool done = 7 [default = true];
-    boolean hasDone();
-    boolean getDone();
-    
-    // optional string error_text = 3;
-    boolean hasErrorText();
-    String getErrorText();
-  }
   public static final class Response extends
-      com.google.protobuf.GeneratedMessage
-      implements ResponseOrBuilder {
+      com.google.protobuf.GeneratedMessage {
     // Use Response.newBuilder() to construct.
-    private Response(Builder builder) {
-      super(builder);
+    private Response() {
+      initFields();
     }
     private Response(boolean noInit) {}
     
@@ -658,11 +450,8 @@ public final class Data {
       UNKNOWN_SERVICE(0, 0),
       UNKNOWN_METHOD(1, 1),
       CANCELED(2, 2),
+      INVALID_PROTOBUF(3, 3),
       ;
-      
-      public static final int UNKNOWN_SERVICE_VALUE = 0;
-      public static final int UNKNOWN_METHOD_VALUE = 1;
-      public static final int CANCELED_VALUE = 2;
       
       
       public final int getNumber() { return value; }
@@ -672,6 +461,7 @@ public final class Data {
           case 0: return UNKNOWN_SERVICE;
           case 1: return UNKNOWN_METHOD;
           case 2: return CANCELED;
+          case 3: return INVALID_PROTOBUF;
           default: return null;
         }
       }
@@ -684,8 +474,8 @@ public final class Data {
           internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<RpcError>() {
               public RpcError findValueByNumber(int number) {
-                return RpcError.valueOf(number);
-              }
+                return RpcError.valueOf(number)
+      ;        }
             };
       
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
@@ -702,9 +492,8 @@ public final class Data {
       }
       
       private static final RpcError[] VALUES = {
-        UNKNOWN_SERVICE, UNKNOWN_METHOD, CANCELED, 
+        UNKNOWN_SERVICE, UNKNOWN_METHOD, CANCELED, INVALID_PROTOBUF, 
       };
-      
       public static RpcError valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
@@ -713,152 +502,99 @@ public final class Data {
         }
         return VALUES[desc.getIndex()];
       }
-      
       private final int index;
       private final int value;
-      
       private RpcError(int index, int value) {
         this.index = index;
         this.value = value;
       }
       
+      static {
+        com.orbekk.protobuf.Data.getDescriptor();
+      }
+      
       // @@protoc_insertion_point(enum_scope:com.orbekk.protobuf.Response.RpcError)
     }
     
-    private int bitField0_;
     // optional bytes response_proto = 1;
     public static final int RESPONSE_PROTO_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString responseProto_;
-    public boolean hasResponseProto() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public com.google.protobuf.ByteString getResponseProto() {
-      return responseProto_;
-    }
+    private boolean hasResponseProto;
+    private com.google.protobuf.ByteString responseProto_ = com.google.protobuf.ByteString.EMPTY;
+    public boolean hasResponseProto() { return hasResponseProto; }
+    public com.google.protobuf.ByteString getResponseProto() { return responseProto_; }
     
     // optional .com.orbekk.protobuf.Response.RpcError error = 2;
     public static final int ERROR_FIELD_NUMBER = 2;
+    private boolean hasError;
     private com.orbekk.protobuf.Data.Response.RpcError error_;
-    public boolean hasError() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    public com.orbekk.protobuf.Data.Response.RpcError getError() {
-      return error_;
-    }
+    public boolean hasError() { return hasError; }
+    public com.orbekk.protobuf.Data.Response.RpcError getError() { return error_; }
     
     // optional int64 request_id = 5;
     public static final int REQUEST_ID_FIELD_NUMBER = 5;
-    private long requestId_;
-    public boolean hasRequestId() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public long getRequestId() {
-      return requestId_;
-    }
+    private boolean hasRequestId;
+    private long requestId_ = 0L;
+    public boolean hasRequestId() { return hasRequestId; }
+    public long getRequestId() { return requestId_; }
     
     // optional bool hasFailed = 4;
     public static final int HASFAILED_FIELD_NUMBER = 4;
-    private boolean hasFailed_;
-    public boolean hasHasFailed() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    public boolean getHasFailed() {
-      return hasFailed_;
-    }
+    private boolean hasHasFailed;
+    private boolean hasFailed_ = false;
+    public boolean hasHasFailed() { return hasHasFailed; }
+    public boolean getHasFailed() { return hasFailed_; }
     
     // optional bool canceled = 6;
     public static final int CANCELED_FIELD_NUMBER = 6;
-    private boolean canceled_;
-    public boolean hasCanceled() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    public boolean getCanceled() {
-      return canceled_;
-    }
+    private boolean hasCanceled;
+    private boolean canceled_ = false;
+    public boolean hasCanceled() { return hasCanceled; }
+    public boolean getCanceled() { return canceled_; }
     
     // optional bool done = 7 [default = true];
     public static final int DONE_FIELD_NUMBER = 7;
-    private boolean done_;
-    public boolean hasDone() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    public boolean getDone() {
-      return done_;
-    }
+    private boolean hasDone;
+    private boolean done_ = true;
+    public boolean hasDone() { return hasDone; }
+    public boolean getDone() { return done_; }
     
     // optional string error_text = 3;
     public static final int ERROR_TEXT_FIELD_NUMBER = 3;
-    private java.lang.Object errorText_;
-    public boolean hasErrorText() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
-    }
-    public String getErrorText() {
-      java.lang.Object ref = errorText_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          errorText_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getErrorTextBytes() {
-      java.lang.Object ref = errorText_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        errorText_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
+    private boolean hasErrorText;
+    private java.lang.String errorText_ = "";
+    public boolean hasErrorText() { return hasErrorText; }
+    public java.lang.String getErrorText() { return errorText_; }
     
     private void initFields() {
-      responseProto_ = com.google.protobuf.ByteString.EMPTY;
       error_ = com.orbekk.protobuf.Data.Response.RpcError.UNKNOWN_SERVICE;
-      requestId_ = 0L;
-      hasFailed_ = false;
-      canceled_ = false;
-      done_ = true;
-      errorText_ = "";
     }
-    private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      memoizedIsInitialized = 1;
       return true;
     }
     
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, responseProto_);
+      if (hasResponseProto()) {
+        output.writeBytes(1, getResponseProto());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, error_.getNumber());
+      if (hasError()) {
+        output.writeEnum(2, getError().getNumber());
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeBytes(3, getErrorTextBytes());
+      if (hasErrorText()) {
+        output.writeString(3, getErrorText());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBool(4, hasFailed_);
+      if (hasHasFailed()) {
+        output.writeBool(4, getHasFailed());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt64(5, requestId_);
+      if (hasRequestId()) {
+        output.writeInt64(5, getRequestId());
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBool(6, canceled_);
+      if (hasCanceled()) {
+        output.writeBool(6, getCanceled());
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBool(7, done_);
+      if (hasDone()) {
+        output.writeBool(7, getDone());
       }
       getUnknownFields().writeTo(output);
     }
@@ -869,44 +605,37 @@ public final class Data {
       if (size != -1) return size;
     
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (hasResponseProto()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, responseProto_);
+          .computeBytesSize(1, getResponseProto());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (hasError()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, error_.getNumber());
+          .computeEnumSize(2, getError().getNumber());
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (hasErrorText()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getErrorTextBytes());
+          .computeStringSize(3, getErrorText());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (hasHasFailed()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, hasFailed_);
+          .computeBoolSize(4, getHasFailed());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (hasRequestId()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, requestId_);
+          .computeInt64Size(5, getRequestId());
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (hasCanceled()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(6, canceled_);
+          .computeBoolSize(6, getCanceled());
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (hasDone()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(7, done_);
+          .computeBoolSize(7, getDone());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
-    }
-    
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
     }
     
     public static com.orbekk.protobuf.Data.Response parseFrom(
@@ -983,63 +712,34 @@ public final class Data {
     }
     public Builder toBuilder() { return newBuilder(this); }
     
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.orbekk.protobuf.Data.ResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Response_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Response_fieldAccessorTable;
-      }
+        com.google.protobuf.GeneratedMessage.Builder<Builder> {
+      private com.orbekk.protobuf.Data.Response result;
       
       // Construct using com.orbekk.protobuf.Data.Response.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
+      private Builder() {}
+      
+      private static Builder create() {
+        Builder builder = new Builder();
+        builder.result = new com.orbekk.protobuf.Data.Response();
+        return builder;
       }
       
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
+      protected com.orbekk.protobuf.Data.Response internalGetResult() {
+        return result;
       }
       
       public Builder clear() {
-        super.clear();
-        responseProto_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        error_ = com.orbekk.protobuf.Data.Response.RpcError.UNKNOWN_SERVICE;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        requestId_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        hasFailed_ = false;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        canceled_ = false;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        done_ = true;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        errorText_ = "";
-        bitField0_ = (bitField0_ & ~0x00000040);
+        if (result == null) {
+          throw new IllegalStateException(
+            "Cannot call clear() after build().");
+        }
+        result = new com.orbekk.protobuf.Data.Response();
         return this;
       }
       
       public Builder clone() {
-        return create().mergeFrom(buildPartial());
+        return create().mergeFrom(result);
       }
       
       public com.google.protobuf.Descriptors.Descriptor
@@ -1051,59 +751,33 @@ public final class Data {
         return com.orbekk.protobuf.Data.Response.getDefaultInstance();
       }
       
+      public boolean isInitialized() {
+        return result.isInitialized();
+      }
       public com.orbekk.protobuf.Data.Response build() {
-        com.orbekk.protobuf.Data.Response result = buildPartial();
-        if (!result.isInitialized()) {
+        if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
-        return result;
+        return buildPartial();
       }
       
       private com.orbekk.protobuf.Data.Response buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.orbekk.protobuf.Data.Response result = buildPartial();
-        if (!result.isInitialized()) {
+        if (!isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
         }
-        return result;
+        return buildPartial();
       }
       
       public com.orbekk.protobuf.Data.Response buildPartial() {
-        com.orbekk.protobuf.Data.Response result = new com.orbekk.protobuf.Data.Response(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
+        if (result == null) {
+          throw new IllegalStateException(
+            "build() has already been called on this Builder.");
         }
-        result.responseProto_ = responseProto_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.error_ = error_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.requestId_ = requestId_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.hasFailed_ = hasFailed_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.canceled_ = canceled_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.done_ = done_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.errorText_ = errorText_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
+        com.orbekk.protobuf.Data.Response returnMe = result;
+        result = null;
+        return returnMe;
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1142,10 +816,6 @@ public final class Data {
         return this;
       }
       
-      public final boolean isInitialized() {
-        return true;
-      }
-      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1158,20 +828,17 @@ public final class Data {
           switch (tag) {
             case 0:
               this.setUnknownFields(unknownFields.build());
-              onChanged();
               return this;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 this.setUnknownFields(unknownFields.build());
-                onChanged();
                 return this;
               }
               break;
             }
             case 10: {
-              bitField0_ |= 0x00000001;
-              responseProto_ = input.readBytes();
+              setResponseProto(input.readBytes());
               break;
             }
             case 16: {
@@ -1180,208 +847,168 @@ public final class Data {
               if (value == null) {
                 unknownFields.mergeVarintField(2, rawValue);
               } else {
-                bitField0_ |= 0x00000002;
-                error_ = value;
+                setError(value);
               }
               break;
             }
             case 26: {
-              bitField0_ |= 0x00000040;
-              errorText_ = input.readBytes();
+              setErrorText(input.readString());
               break;
             }
             case 32: {
-              bitField0_ |= 0x00000008;
-              hasFailed_ = input.readBool();
+              setHasFailed(input.readBool());
               break;
             }
             case 40: {
-              bitField0_ |= 0x00000004;
-              requestId_ = input.readInt64();
+              setRequestId(input.readInt64());
               break;
             }
             case 48: {
-              bitField0_ |= 0x00000010;
-              canceled_ = input.readBool();
+              setCanceled(input.readBool());
               break;
             }
             case 56: {
-              bitField0_ |= 0x00000020;
-              done_ = input.readBool();
+              setDone(input.readBool());
               break;
             }
           }
         }
       }
       
-      private int bitField0_;
       
       // optional bytes response_proto = 1;
-      private com.google.protobuf.ByteString responseProto_ = com.google.protobuf.ByteString.EMPTY;
       public boolean hasResponseProto() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return result.hasResponseProto();
       }
       public com.google.protobuf.ByteString getResponseProto() {
-        return responseProto_;
+        return result.getResponseProto();
       }
       public Builder setResponseProto(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
-        responseProto_ = value;
-        onChanged();
+  result.hasResponseProto = true;
+        result.responseProto_ = value;
         return this;
       }
       public Builder clearResponseProto() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        responseProto_ = getDefaultInstance().getResponseProto();
-        onChanged();
+        result.hasResponseProto = false;
+        result.responseProto_ = getDefaultInstance().getResponseProto();
         return this;
       }
       
       // optional .com.orbekk.protobuf.Response.RpcError error = 2;
-      private com.orbekk.protobuf.Data.Response.RpcError error_ = com.orbekk.protobuf.Data.Response.RpcError.UNKNOWN_SERVICE;
       public boolean hasError() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return result.hasError();
       }
       public com.orbekk.protobuf.Data.Response.RpcError getError() {
-        return error_;
+        return result.getError();
       }
       public Builder setError(com.orbekk.protobuf.Data.Response.RpcError value) {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000002;
-        error_ = value;
-        onChanged();
+        result.hasError = true;
+        result.error_ = value;
         return this;
       }
       public Builder clearError() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        error_ = com.orbekk.protobuf.Data.Response.RpcError.UNKNOWN_SERVICE;
-        onChanged();
+        result.hasError = false;
+        result.error_ = com.orbekk.protobuf.Data.Response.RpcError.UNKNOWN_SERVICE;
         return this;
       }
       
       // optional int64 request_id = 5;
-      private long requestId_ ;
       public boolean hasRequestId() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return result.hasRequestId();
       }
       public long getRequestId() {
-        return requestId_;
+        return result.getRequestId();
       }
       public Builder setRequestId(long value) {
-        bitField0_ |= 0x00000004;
-        requestId_ = value;
-        onChanged();
+        result.hasRequestId = true;
+        result.requestId_ = value;
         return this;
       }
       public Builder clearRequestId() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        requestId_ = 0L;
-        onChanged();
+        result.hasRequestId = false;
+        result.requestId_ = 0L;
         return this;
       }
       
       // optional bool hasFailed = 4;
-      private boolean hasFailed_ ;
       public boolean hasHasFailed() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return result.hasHasFailed();
       }
       public boolean getHasFailed() {
-        return hasFailed_;
+        return result.getHasFailed();
       }
       public Builder setHasFailed(boolean value) {
-        bitField0_ |= 0x00000008;
-        hasFailed_ = value;
-        onChanged();
+        result.hasHasFailed = true;
+        result.hasFailed_ = value;
         return this;
       }
       public Builder clearHasFailed() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        hasFailed_ = false;
-        onChanged();
+        result.hasHasFailed = false;
+        result.hasFailed_ = false;
         return this;
       }
       
       // optional bool canceled = 6;
-      private boolean canceled_ ;
       public boolean hasCanceled() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return result.hasCanceled();
       }
       public boolean getCanceled() {
-        return canceled_;
+        return result.getCanceled();
       }
       public Builder setCanceled(boolean value) {
-        bitField0_ |= 0x00000010;
-        canceled_ = value;
-        onChanged();
+        result.hasCanceled = true;
+        result.canceled_ = value;
         return this;
       }
       public Builder clearCanceled() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        canceled_ = false;
-        onChanged();
+        result.hasCanceled = false;
+        result.canceled_ = false;
         return this;
       }
       
       // optional bool done = 7 [default = true];
-      private boolean done_ = true;
       public boolean hasDone() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return result.hasDone();
       }
       public boolean getDone() {
-        return done_;
+        return result.getDone();
       }
       public Builder setDone(boolean value) {
-        bitField0_ |= 0x00000020;
-        done_ = value;
-        onChanged();
+        result.hasDone = true;
+        result.done_ = value;
         return this;
       }
       public Builder clearDone() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        done_ = true;
-        onChanged();
+        result.hasDone = false;
+        result.done_ = true;
         return this;
       }
       
       // optional string error_text = 3;
-      private java.lang.Object errorText_ = "";
       public boolean hasErrorText() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return result.hasErrorText();
       }
-      public String getErrorText() {
-        java.lang.Object ref = errorText_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          errorText_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public java.lang.String getErrorText() {
+        return result.getErrorText();
       }
-      public Builder setErrorText(String value) {
+      public Builder setErrorText(java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000040;
-        errorText_ = value;
-        onChanged();
+  result.hasErrorText = true;
+        result.errorText_ = value;
         return this;
       }
       public Builder clearErrorText() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        errorText_ = getDefaultInstance().getErrorText();
-        onChanged();
+        result.hasErrorText = false;
+        result.errorText_ = getDefaultInstance().getErrorText();
         return this;
-      }
-      void setErrorText(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000040;
-        errorText_ = value;
-        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:com.orbekk.protobuf.Response)
@@ -1389,6 +1016,7 @@ public final class Data {
     
     static {
       defaultInstance = new Response(true);
+      com.orbekk.protobuf.Data.internalForceInit();
       defaultInstance.initFields();
     }
     
@@ -1418,13 +1046,14 @@ public final class Data {
       ".proto\022\023com.orbekk.protobuf\"d\n\007Request\022\031" +
       "\n\021full_service_name\030\001 \001(\t\022\023\n\013method_name" +
       "\030\002 \001(\t\022\025\n\rrequest_proto\030\003 \001(\014\022\022\n\nrequest" +
-      "_id\030\004 \001(\003\"\375\001\n\010Response\022\026\n\016response_proto" +
+      "_id\030\004 \001(\003\"\223\002\n\010Response\022\026\n\016response_proto" +
       "\030\001 \001(\014\0225\n\005error\030\002 \001(\0162&.com.orbekk.proto" +
       "buf.Response.RpcError\022\022\n\nrequest_id\030\005 \001(" +
       "\003\022\021\n\thasFailed\030\004 \001(\010\022\020\n\010canceled\030\006 \001(\010\022\022" +
-      "\n\004done\030\007 \001(\010:\004true\022\022\n\nerror_text\030\003 \001(\t\"A" +
+      "\n\004done\030\007 \001(\010:\004true\022\022\n\nerror_text\030\003 \001(\t\"W" +
       "\n\010RpcError\022\023\n\017UNKNOWN_SERVICE\020\000\022\022\n\016UNKNO",
-      "WN_METHOD\020\001\022\014\n\010CANCELED\020\002"
+      "WN_METHOD\020\001\022\014\n\010CANCELED\020\002\022\024\n\020INVALID_PRO" +
+      "TOBUF\020\003"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1455,6 +1084,8 @@ public final class Data {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
+  
+  public static void internalForceInit() {}
   
   // @@protoc_insertion_point(outer_class_scope)
 }
