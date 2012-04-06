@@ -38,8 +38,8 @@ public class RpcChannel extends Thread implements
         com.google.protobuf.RpcChannel {
     static final Logger logger =
             Logger.getLogger(RpcChannel.class.getName());
-    private String host;
-    private int port;
+    private final String host;
+    private final int port;
     private volatile Socket socket = null;
     private AtomicLong nextId = new AtomicLong(0);
     private Map<Long, RpcChannel.OngoingRequest> rpcs =

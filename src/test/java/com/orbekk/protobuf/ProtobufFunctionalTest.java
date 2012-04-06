@@ -71,6 +71,27 @@ public class ProtobufFunctionalTest {
         }
     }
     
+    @org.junit.Test public void testNewRpcChannel() throws Exception {
+        NewRpcChannel channel = NewRpcChannel.create("localhost", serverport);
+        Test.Service service = Test.Service.newStub(channel);
+        Test.Type1 request = Test.Type1.newBuilder().build();
+        int count = 1000000;
+        final Rpc rpc = new Rpc();
+        final CountDownLatch stop = new CountDownLatch(count);
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < count; i++) {
+            service.testA(rpc, request, new RpcCallback<Type2>() {
+                @Override public void run(Type2 result) {
+                    stop.countDown();
+                }
+            });
+        }
+        stop.await();
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        System.out.println("Elapsed time for " + count + " requests: " +
+                elapsedTime + ". " + count/elapsedTime*1000 + "r/s");
+    }
+    
     @org.junit.Test public void respondsNormally() throws Exception {
         Test.Type1 request = Test.Type1.newBuilder().build();
         int count = 10;
