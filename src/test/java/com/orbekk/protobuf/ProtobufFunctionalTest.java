@@ -15,11 +15,13 @@
  */
 package com.orbekk.protobuf;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.util.concurrent.CountDownLatch;
 
 import org.junit.Before;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 import com.google.protobuf.RpcCallback;
 import com.google.protobuf.RpcController;
@@ -71,11 +73,12 @@ public class ProtobufFunctionalTest {
         }
     }
     
+    @Ignore
     @org.junit.Test public void testNewRpcChannel() throws Exception {
         NewRpcChannel channel = NewRpcChannel.create("localhost", serverport);
         Test.Service service = Test.Service.newStub(channel);
         Test.Type1 request = Test.Type1.newBuilder().build();
-        int count = 1000000;
+        int count = 5000000;
         final Rpc rpc = new Rpc();
         final CountDownLatch stop = new CountDownLatch(count);
         long startTime = System.currentTimeMillis();
