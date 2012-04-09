@@ -1,5 +1,7 @@
 package com.orbekk.protobuf;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -14,10 +16,12 @@ public class ConnectionHandler {
     private class IncomingHandler implements Runnable {
         @Override public void run() {
             dispatcher.start();
-            while (!connection.isClosed()) {
-                try {
+            try {
+                BufferedInputStream input = new BufferedInputStream(
+                        connection.getInputStream());
+                while (!connection.isClosed()) {
                     Data.Request r = Data.Request.parseDelimitedFrom(
-                            connection.getInputStream());
+                            input);
                     if (r == null) {
                         tryCloseConnection();
                     } else {
@@ -28,9 +32,9 @@ public class ConnectionHandler {
                             return;
                         }
                     }
-                } catch (IOException e) {
-                    tryCloseConnection();
                 }
+            } catch (IOException e) {
+                tryCloseConnection();
             }
             dispatcher.interrupt();
         }
@@ -38,17 +42,21 @@ public class ConnectionHandler {
 
     private class OutgoingHandler implements Runnable {
         @Override public void run() {
-            while (!connection.isClosed()) {
-                try {
+            try {
+                BufferedOutputStream output = new BufferedOutputStream(
+                        connection.getOutputStream());
+                while (!connection.isClosed()) {
                     Data.Response response = dispatcherOutput.take();
                     try {
                         response.writeDelimitedTo(connection.getOutputStream());
                     } catch (IOException e) {
                         tryCloseConnection();
                     }
-                } catch (InterruptedException e) {
-                    tryCloseConnection();
                 }
+            } catch (InterruptedException e) {
+                tryCloseConnection();
+            } catch (IOException e) {
+                tryCloseConnection();
             }
             dispatcher.interrupt();
         }
