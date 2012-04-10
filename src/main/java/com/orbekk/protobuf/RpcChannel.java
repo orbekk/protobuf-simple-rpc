@@ -143,7 +143,11 @@ public class RpcChannel extends Thread implements
             Data.Request request = createRequest(method, controller,
                     requestMessage, responsePrototype, done);
             Socket socket = getSocket();
-            request.writeDelimitedTo(socket.getOutputStream());
+            if (socket == null) {
+                cancelAllRpcs();
+            } else {
+                request.writeDelimitedTo(socket.getOutputStream());
+            }
         } catch (IOException e) {
             throw new AssertionError("Should return error.");
         }
@@ -194,7 +198,7 @@ public class RpcChannel extends Thread implements
                 Socket socket = sockets.take();
                 handleResponses(socket);
             } catch (InterruptedException e) {
-                // Interrupts handled by outer loop
+                Thread.currentThread().interrupt();
             }
         }
     }
@@ -202,6 +206,7 @@ public class RpcChannel extends Thread implements
     public void close() {
         if (socket != null) {
             try {
+                this.interrupt();
                 socket.close();
             } catch (IOException e) {
                 logger.info("Error closing socket.");

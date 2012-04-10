@@ -73,6 +73,9 @@ public class ProtobufFunctionalTest {
         }
     }
     
+    @org.junit.Test public void testConnectionRefused() throws Exception {
+    }
+    
     @Ignore
     @org.junit.Test public void testNewRpcChannel() throws Exception {
         NewRpcChannel channel = NewRpcChannel.create("localhost", serverport);
