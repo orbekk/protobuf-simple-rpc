@@ -73,15 +73,11 @@ public class ProtobufFunctionalTest {
         }
     }
     
-    @org.junit.Test public void testConnectionRefused() throws Exception {
-    }
-    
-    @Ignore
     @org.junit.Test public void testNewRpcChannel() throws Exception {
         NewRpcChannel channel = NewRpcChannel.create("localhost", serverport);
         Test.Service service = Test.Service.newStub(channel);
         Test.Type1 request = Test.Type1.newBuilder().build();
-        int count = 5000000;
+        int count = 10000;
         final Rpc rpc = new Rpc();
         final CountDownLatch stop = new CountDownLatch(count);
         long startTime = System.currentTimeMillis();

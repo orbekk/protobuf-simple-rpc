@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.LinkedList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -45,13 +46,16 @@ public class ConnectionHandler {
             try {
                 BufferedOutputStream output = new BufferedOutputStream(
                         connection.getOutputStream());
+                LinkedList<Data.Response> buffer =
+                        new LinkedList<Data.Response>();
                 while (!connection.isClosed()) {
-                    Data.Response response = dispatcherOutput.take();
-                    try {
-                        response.writeDelimitedTo(connection.getOutputStream());
-                    } catch (IOException e) {
-                        tryCloseConnection();
+                    buffer.clear();
+                    buffer.add(dispatcherOutput.take());
+                    dispatcherOutput.drainTo(buffer);
+                    for (Data.Response response : buffer) {
+                        response.writeDelimitedTo(output);
                     }
+                    output.flush();
                 }
             } catch (InterruptedException e) {
                 tryCloseConnection();
