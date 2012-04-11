@@ -16,6 +16,7 @@
 package com.orbekk.protobuf;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -23,11 +24,11 @@ import com.google.protobuf.RpcCallback;
 import com.google.protobuf.RpcController;
 
 public class Rpc implements RpcController {
-    private String errorText = "";
     private CountDownLatch done = new CountDownLatch(1);
-    private boolean hasFailed;
-    private boolean canceled;
-    private List<RpcCallback<Object>> cancelNotificationListeners = null;
+    private volatile String errorText = "";
+    private volatile boolean hasFailed;
+    private volatile boolean canceled;
+    private volatile List<RpcCallback<Object>> cancelNotificationListeners = null;
     
     public Rpc() {
     }
@@ -95,7 +96,8 @@ public class Rpc implements RpcController {
     public void notifyOnCancel(RpcCallback<Object> listener) {
         if (cancelNotificationListeners == null) {
             cancelNotificationListeners =
-                    new ArrayList<RpcCallback<Object>>();
+                    Collections.synchronizedList(
+                            new ArrayList<RpcCallback<Object>>());
         }
         cancelNotificationListeners.add(listener);
     }
