@@ -22,7 +22,7 @@ import com.google.protobuf.RpcCallback;
 import com.google.protobuf.RpcController;
 
 public class NewRpcChannel implements com.google.protobuf.RpcChannel {
-    public static int NUM_CONCURRENT_REQUESTS = 50;
+    public static int NUM_CONCURRENT_REQUESTS = 5;
     private static final Logger logger =
             Logger.getLogger(RpcChannel.class.getName());
     private final String host;
@@ -212,7 +212,10 @@ public class NewRpcChannel implements com.google.protobuf.RpcChannel {
     }
     
     private void cancelRequest(RequestMetadata request, String reason) {
-        throw new IllegalStateException("Not implemented");
+        request.rpc.setFailed(reason);
+        request.rpc.cancel();
+        request.done.run(null);
+        request.rpc.complete();
     }
     
     private void handleResponse(Data.Response response) {
@@ -227,6 +230,7 @@ public class NewRpcChannel implements com.google.protobuf.RpcChannel {
                     .mergeFrom(response.getResponseProto()).build();
             request.rpc.readFrom(response);
             request.done.run(responsePb);
+            request.rpc.complete();
         } catch (InvalidProtocolBufferException e) {
             cancelRequest(request, "invalid response from server");
         }

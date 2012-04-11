@@ -11,7 +11,7 @@ import com.google.protobuf.RpcCallback;
 import com.google.protobuf.Service;
 
 public class RequestDispatcher extends Thread {
-    public static int DEFAULT_QUEUE_SIZE = 50;
+    public static int DEFAULT_QUEUE_SIZE = 5;
     private volatile boolean isStopped = false;
     private final BlockingQueue<Data.Response> output;
     private final ServiceHolder services;

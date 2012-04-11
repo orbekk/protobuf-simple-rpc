@@ -24,6 +24,7 @@ import com.google.protobuf.RpcController;
 
 public class Rpc implements RpcController {
     private String errorText = "";
+    private CountDownLatch done = new CountDownLatch(1);
     private boolean hasFailed;
     private boolean canceled;
     private List<RpcCallback<Object>> cancelNotificationListeners = null;
@@ -64,6 +65,18 @@ public class Rpc implements RpcController {
         return errorText;
     }
 
+    public boolean isDone() {
+        return done.getCount() == 0;
+    }
+    
+    public void await() throws InterruptedException {
+        done.await();
+    }
+    
+    void complete() {
+        done.countDown();
+    }
+    
     public boolean isOk() {
         return !hasFailed && !canceled;
     }

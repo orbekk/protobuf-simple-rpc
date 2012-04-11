@@ -19,6 +19,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -78,10 +79,10 @@ public class ProtobufFunctionalTest {
         Test.Service service = Test.Service.newStub(channel);
         Test.Type1 request = Test.Type1.newBuilder().build();
         int count = 10000;
-        final Rpc rpc = new Rpc();
         final CountDownLatch stop = new CountDownLatch(count);
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < count; i++) {
+            final Rpc rpc = new Rpc();
             service.testA(rpc, request, new RpcCallback<Type2>() {
                 @Override public void run(Type2 result) {
                     stop.countDown();
@@ -92,6 +93,22 @@ public class ProtobufFunctionalTest {
         long elapsedTime = System.currentTimeMillis() - startTime;
         System.out.println("Elapsed time for " + count + " requests: " +
                 elapsedTime + ". " + count/elapsedTime*1000 + "r/s");
+    }
+    
+    @org.junit.Test public void testDoneSignal() throws Exception {
+        NewRpcChannel channel = NewRpcChannel.create("localhost", serverport);
+        Test.Service service = Test.Service.newStub(channel);
+        Test.Type1 request = Test.Type1.newBuilder().build();
+
+        final AtomicBoolean callbackFinished = new AtomicBoolean(false);
+        Rpc rpc = new Rpc();
+        service.testA(rpc, request, new RpcCallback<Type2>() {
+            @Override public void run(Type2 result) {
+                callbackFinished.set(true);
+            }
+        });
+        rpc.await();
+        assertThat(callbackFinished.get(), is(true));
     }
     
     @org.junit.Test public void respondsNormally() throws Exception {
