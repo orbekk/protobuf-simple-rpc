@@ -19,14 +19,14 @@ import java.util.concurrent.CountDownLatch;
 
 import com.google.protobuf.RpcCallback;
 import com.orbekk.example.Example.FortuneReply;
+import com.orbekk.protobuf.NewRpcChannel;
 import com.orbekk.protobuf.Rpc;
-import com.orbekk.protobuf.RpcChannel;
 
 public class ExampleClient {
     public void runClient(int port) {
-        RpcChannel channel = null;
+        NewRpcChannel channel = null;
         try {
-            channel = RpcChannel.create("localhost", port);
+            channel = NewRpcChannel.createOrNull("localhost", port);
             Example.FortuneService service =
                     Example.FortuneService.newStub(channel);
             printFortune(service);

@@ -18,6 +18,8 @@ package com.orbekk.protobuf;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -33,11 +35,13 @@ public class ProtobufFunctionalTest {
     CountDownLatch returnC = new CountDownLatch(1);
     SimpleProtobufServer server = SimpleProtobufServer.create(0, 50, 1);
     int serverport = server.getPort();
-    RpcChannel channel = RpcChannel.create("localhost", serverport);
+    NewRpcChannel channel;
     TestService directService = new TestService();
-    Test.Service service = Test.Service.newStub(channel);
+    Test.Service service;
     
-    @Before public void setUp() {
+    @Before public void setUp() throws Exception {
+        channel = NewRpcChannel.create("localhost", serverport);
+        service = Test.Service.newStub(channel);
         server.start();
         server.registerService(directService);
     }
@@ -150,7 +154,7 @@ public class ProtobufFunctionalTest {
         service.testC(rpc, request, new RpcCallback<Type2>() {
             @Override public void run(Type2 result) {
                 assertThat(rpc.failed(), is(true));
-                assertThat(rpc.errorText(), is("connection closed"));
+                assertThat(rpc.errorText(), is("channel closed"));
                 stop.countDown();
             }
         });
