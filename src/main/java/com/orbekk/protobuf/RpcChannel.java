@@ -21,10 +21,10 @@ import com.google.protobuf.Message;
 import com.google.protobuf.RpcCallback;
 import com.google.protobuf.RpcController;
 
-public class NewRpcChannel implements com.google.protobuf.RpcChannel {
+public class RpcChannel implements com.google.protobuf.RpcChannel {
     public static int NUM_CONCURRENT_REQUESTS = 5;
     private static final Logger logger =
-            Logger.getLogger(NewRpcChannel.class.getName());
+            Logger.getLogger(RpcChannel.class.getName());
     private final String host;
     private final int port;
     private final AtomicLong nextId = new AtomicLong(0);
@@ -142,7 +142,7 @@ public class NewRpcChannel implements com.google.protobuf.RpcChannel {
         }
     }
     
-    public static NewRpcChannel createOrNull(String host, int port) {
+    public static RpcChannel createOrNull(String host, int port) {
         try {
             return create(host, port);
         } catch (UnknownHostException e) {
@@ -154,14 +154,14 @@ public class NewRpcChannel implements com.google.protobuf.RpcChannel {
         }
     }
 
-    public static NewRpcChannel create(String host, int port)
+    public static RpcChannel create(String host, int port)
             throws UnknownHostException, IOException {
-        NewRpcChannel channel = new NewRpcChannel(host, port);
+        RpcChannel channel = new RpcChannel(host, port);
         channel.start();
         return channel;
     }
     
-    NewRpcChannel(String host, int port) {
+    RpcChannel(String host, int port) {
         this.host = host;
         this.port = port;
     }

@@ -35,12 +35,12 @@ public class ProtobufFunctionalTest {
     CountDownLatch returnC = new CountDownLatch(1);
     SimpleProtobufServer server = SimpleProtobufServer.create(0, 50, 1);
     int serverport = server.getPort();
-    NewRpcChannel channel;
+    RpcChannel channel;
     TestService directService = new TestService();
     Test.Service service;
     
     @Before public void setUp() throws Exception {
-        channel = NewRpcChannel.create("localhost", serverport);
+        channel = RpcChannel.create("localhost", serverport);
         service = Test.Service.newStub(channel);
         server.start();
         server.registerService(directService);
@@ -79,7 +79,7 @@ public class ProtobufFunctionalTest {
     }
     
     @org.junit.Test public void testNewRpcChannel() throws Exception {
-        NewRpcChannel channel = NewRpcChannel.create("localhost", serverport);
+        RpcChannel channel = RpcChannel.create("localhost", serverport);
         Test.Service service = Test.Service.newStub(channel);
         Test.Type1 request = Test.Type1.newBuilder().build();
         int count = 10000;
@@ -100,7 +100,7 @@ public class ProtobufFunctionalTest {
     }
     
     @org.junit.Test public void testDoneSignal() throws Exception {
-        NewRpcChannel channel = NewRpcChannel.create("localhost", serverport);
+        RpcChannel channel = RpcChannel.create("localhost", serverport);
         Test.Service service = Test.Service.newStub(channel);
         Test.Type1 request = Test.Type1.newBuilder().build();
 
