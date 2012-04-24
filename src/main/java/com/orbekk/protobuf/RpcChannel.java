@@ -238,7 +238,7 @@ public class RpcChannel implements com.google.protobuf.RpcChannel {
         RequestMetadata request =
                 ongoingRequests.remove(response.getRequestId());
         if (request == null) {
-            logger.info("Unknown request. Possible timeout?" + response);
+            logger.info("Unknown request. Possible timeout? " + response);
             return;
         }
         try {
