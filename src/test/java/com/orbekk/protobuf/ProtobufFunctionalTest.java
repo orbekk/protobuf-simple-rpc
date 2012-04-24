@@ -161,4 +161,22 @@ public class ProtobufFunctionalTest {
         server.interrupt();
         stop.await();
     }
+    
+    @org.junit.Test public void testTimout() throws Exception {
+        Test.Type1 request = Test.Type1.newBuilder().build();
+        final CountDownLatch stop = new CountDownLatch(1);
+
+        final Rpc rpc = new Rpc();
+        rpc.setTimout(1);
+        service.testC(rpc, request, new RpcCallback<Type2>() {
+            @Override public void run(Type2 result) {
+                stop.countDown();
+            }
+        });
+        rpc.await();
+        assertThat(rpc.failed(), is(true));
+        assertThat(rpc.errorText(), is("timeout"));
+        returnC.countDown();
+        stop.await();
+    }
 }

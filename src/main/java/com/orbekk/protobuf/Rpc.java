@@ -28,6 +28,7 @@ public class Rpc implements RpcController {
     private volatile String errorText = "";
     private volatile boolean hasFailed;
     private volatile boolean canceled;
+    private volatile long timeoutMillis = 0;
     private volatile List<RpcCallback<Object>> cancelNotificationListeners = null;
     
     public Rpc() {
@@ -121,6 +122,18 @@ public class Rpc implements RpcController {
                 listener.run(null);
             }
         }
+    }
+    
+    public long getTimout() {
+        return timeoutMillis;
+    }
+    
+    /** Set the timeout in number of milliseconds.
+     * 
+     * The default timeout is 0, i.e. never time out.
+     */
+    public void setTimout(long milliseconds) {
+        timeoutMillis = milliseconds;
     }
 
     @Override
