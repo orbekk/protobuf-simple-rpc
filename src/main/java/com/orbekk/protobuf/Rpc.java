@@ -124,7 +124,7 @@ public class Rpc implements RpcController {
         }
     }
     
-    public long getTimout() {
+    public long getTimeout() {
         return timeoutMillis;
     }
     
@@ -132,7 +132,7 @@ public class Rpc implements RpcController {
      * 
      * The default timeout is 0, i.e. never time out.
      */
-    public void setTimout(long milliseconds) {
+    public void setTimeout(long milliseconds) {
         timeoutMillis = milliseconds;
     }
 

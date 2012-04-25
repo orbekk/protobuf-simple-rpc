@@ -218,7 +218,7 @@ public class RpcChannel implements com.google.protobuf.RpcChannel {
     }
 
     private void addTimeoutHandler(RequestMetadata request) {
-        long timeout = request.rpc.getTimout();
+        long timeout = request.rpc.getTimeout();
         if (timeout > 0) {
             timer.schedule(new CancelRequestTask(request.id), timeout);
         }
