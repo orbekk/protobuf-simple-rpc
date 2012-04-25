@@ -167,7 +167,7 @@ public class ProtobufFunctionalTest {
         final CountDownLatch stop = new CountDownLatch(1);
 
         final Rpc rpc = new Rpc();
-        rpc.setTimout(1);
+        rpc.setTimeout(1);
         service.testC(rpc, request, new RpcCallback<Type2>() {
             @Override public void run(Type2 result) {
                 stop.countDown();

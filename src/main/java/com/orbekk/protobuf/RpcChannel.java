@@ -80,7 +80,9 @@ public class RpcChannel implements com.google.protobuf.RpcChannel {
         @Override
         public void run() {
             RequestMetadata request = ongoingRequests.remove(id);
-            cancelRequest(request, "timeout");
+            if (request != null) {
+                cancelRequest(request, "timeout");
+            }
         }
     }
     
