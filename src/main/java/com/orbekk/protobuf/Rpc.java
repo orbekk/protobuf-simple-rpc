@@ -75,7 +75,7 @@ public class Rpc implements RpcController {
         done.await();
     }
     
-    void complete() {
+    public void complete() {
         done.countDown();
     }
     
