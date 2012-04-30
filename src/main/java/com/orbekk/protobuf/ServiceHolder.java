@@ -14,13 +14,22 @@ public class ServiceHolder {
     public ServiceHolder() {
     }
     
-    public void registerService (Service service) {
+    public void registerService(Service service) {
         String serviceName = service.getDescriptorForType().getFullName();
         Service previousService = services.put(serviceName, service);
         if (previousService != null) {
             logger.warning("Replaced service " + previousService + " with " +
                     service);
         }
+    }
+    
+    public void removeService(Service service) {
+        String serviceName = service.getDescriptorForType().getFullName();
+        removeService(serviceName);
+    }
+    
+    public void removeService(String serviceName) {
+        services.remove(serviceName);
     }
     
     public Service get(String fullServiceName) {

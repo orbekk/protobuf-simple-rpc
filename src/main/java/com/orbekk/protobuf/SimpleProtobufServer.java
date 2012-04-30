@@ -82,6 +82,14 @@ public class SimpleProtobufServer extends Thread {
     public void registerService(Service service) {
         services.registerService(service);
     }
+    
+    public void removeService(Service service) {
+        services.removeService(service);
+    }
+    
+    public void removeService(String fullServiceName) {
+        services.removeService(fullServiceName);
+    }
 
     private synchronized void handleConnection(Socket connection) {
         if (serverSocket.isClosed()) {
