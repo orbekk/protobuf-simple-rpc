@@ -205,6 +205,7 @@ public class RpcChannel implements com.google.protobuf.RpcChannel {
         tryCloseSocket(socket);
         outgoingHandler.interrupt();
         incomingHandler.interrupt();
+        timer.cancel();
         cancelAllRequests("channel closed.");
     }
 
