@@ -58,6 +58,7 @@ public class RequestDispatcher extends Thread {
         }
         
         public void internalRun() throws InterruptedException {
+            response.setRequestId(request.getRequestId());
             Service service = services.get(request.getFullServiceName());
             if (service == null) {
                 response.setError(Data.Response.RpcError.UNKNOWN_SERVICE);
@@ -90,7 +91,6 @@ public class RequestDispatcher extends Thread {
                         method.getFullName(),
                         requestMessage));
             }
-            response.setRequestId(request.getRequestId());
             service.callMethod(method, rpc, requestMessage, callback);
         }
         
