@@ -1,8 +1,9 @@
 package com.orbekk.protobuf;
 
-import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.google.protobuf.Descriptors;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -11,6 +12,7 @@ import com.google.protobuf.RpcCallback;
 import com.google.protobuf.Service;
 
 public class RequestDispatcher extends Thread {
+    private static final Logger logger = Logger.getLogger(RequestDispatcher.class.getName());
     public static int DEFAULT_QUEUE_SIZE = 5;
     private volatile boolean isStopped = false;
     private final BlockingQueue<Data.Response> output;
@@ -32,6 +34,10 @@ public class RequestDispatcher extends Thread {
             @Override public void run(Message responseMessage) {
                 if (responseMessage != null) {
                     response.setResponseProto(responseMessage.toByteString());
+                }
+                if (logger.isLoggable(Level.FINER)) {
+                    logger.finer(String.format("I(%d): %s <= ",
+                            request.getRequestId(), responseMessage));
                 }
                 rpc.writeTo(response);
                 try {
@@ -78,6 +84,12 @@ public class RequestDispatcher extends Thread {
                 return;
             }
             
+            if (logger.isLoggable(Level.FINER)) {
+                logger.fine(String.format("I(%d) => %s(%s)",
+                        request.getRequestId(),
+                        method.getFullName(),
+                        requestMessage));
+            }
             response.setRequestId(request.getRequestId());
             service.callMethod(method, rpc, requestMessage, callback);
         }

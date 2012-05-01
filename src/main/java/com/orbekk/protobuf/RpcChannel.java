@@ -238,6 +238,11 @@ public class RpcChannel implements com.google.protobuf.RpcChannel {
         addTimeoutHandler(request_);
         ongoingRequests.put(id, request_);
         
+        if (logger.isLoggable(Level.FINER)) {
+            logger.finer(String.format("O(%d) => %s(%s)",
+                    id, method.getFullName(), requestMessage));
+        }
+        
         Data.Request requestData = Data.Request.newBuilder()
                 .setRequestId(id)
                 .setFullServiceName(method.getService().getFullName())
@@ -275,6 +280,11 @@ public class RpcChannel implements com.google.protobuf.RpcChannel {
         try {
             Message responsePb = request.responsePrototype.toBuilder()
                     .mergeFrom(response.getResponseProto()).build();
+            if (logger.isLoggable(Level.FINER)) {
+                logger.finer(String.format("O(%d) <= %s",
+                        response.getRequestId(),
+                        responsePb));
+            }
             request.rpc.readFrom(response);
             request.done.run(responsePb);
             request.rpc.complete();
