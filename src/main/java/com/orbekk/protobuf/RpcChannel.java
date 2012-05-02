@@ -294,14 +294,21 @@ public class RpcChannel implements com.google.protobuf.RpcChannel {
             return;
         }
         try {
-            Message responsePb = request.responsePrototype.toBuilder()
-                    .mergeFrom(response.getResponseProto()).build();
+            Message responsePb = null;
+            if (response.hasResponseProto()) {
+                responsePb = request.responsePrototype.toBuilder()
+                        .mergeFrom(response.getResponseProto()).build();
+            }
             if (logger.isLoggable(Level.FINER)) {
                 logger.finer(String.format("O(%d) <= %s",
                         response.getRequestId(),
                         responsePb));
             }
             request.rpc.readFrom(response);
+            if (responsePb == null && request.rpc.isOk()) {
+                logger.warning("Invalid response from server: " + response);
+                request.rpc.setFailed("invalid response from server.");
+            }
             request.done.run(responsePb);
             request.rpc.complete();
         } catch (InvalidProtocolBufferException e) {

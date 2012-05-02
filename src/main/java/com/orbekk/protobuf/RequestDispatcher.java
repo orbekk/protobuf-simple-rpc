@@ -47,6 +47,11 @@ public class RequestDispatcher extends Thread {
         private final RpcCallback<Message> callback =
                 new RpcCallback<Message>() {
             @Override public void run(Message responseMessage) {
+                if (responseMessage == null && rpc.isOk()) {
+                    throw new IllegalStateException(
+                            "responseMessage is null, but rpc is ok:  " +
+                            rpc);
+                }
                 if (responseMessage != null) {
                     response.setResponseProto(responseMessage.toByteString());
                 }
