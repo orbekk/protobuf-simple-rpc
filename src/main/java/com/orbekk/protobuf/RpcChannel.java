@@ -226,8 +226,8 @@ public class RpcChannel implements com.google.protobuf.RpcChannel {
 
     private void tryCloseSocket(Socket socket) {
         try {
-            socket.close();
             cancelAllRequests("channel closed");
+            socket.close();
         } catch (IOException e1) {
             logger.log(Level.WARNING,
                     "Unable to close socket " + socket,
