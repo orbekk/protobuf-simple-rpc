@@ -139,4 +139,9 @@ public class Rpc implements RpcController {
     @Override
     public void startCancel() {
     }
+    
+    @Override public String toString() {
+        return String.format("Rpc[ok(%s) canceled(%s) failed(%s) error_text(%s)]",
+                isOk(), isCanceled(), failed(), errorText());
+    }
 }
